@@ -9,13 +9,16 @@
   <title>Tournament Manager</title>
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <meta name="author" content="Nico Rubach, Theodor Houghton-Larsen, Frederic Janning">
   <script src="js/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <script src="js/app.js" charset="utf-8"></script>
   <script src="js/home.js" charset="utf-8"></script>
   <script src="js/teams.js" charset="utf-8"></script>
   <script src="js/tournamentsOverview.js" charset="utf-8"></script>
-  <meta name="author" content="Nico Rubach, Theodor Houghton-Larsen, Frederic Janning">
+  <script src="js/tournamentDisplay.js" charset="utf-8"></script>
+  <script src="js/newTeam.js" charset="utf-8"></script>
+  <script src="js/newTournament.js" charset="utf-8"></script>
   <script type="text/javascript">
     //All available pages
     let pages = [
@@ -33,6 +36,21 @@
         url: "/teams",
         resource: "/pages/teams.html",
         class: PageTeams
+      },
+      {
+          url:"/teams/new",
+          resource: "/pages/newTeam.html",
+          class: PageNewTeam
+      },
+      {
+          url:"/tournaments/new",
+          resource: "/pages/newTournament.html",
+          class: PageNewTournament
+      },
+      {
+          url:"/tournaments/showTournament",
+          resource: "/pages/tournamentDisplay.html",
+          class: PageTournamentDisplay
       }
     ];
 
