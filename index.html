@@ -4,25 +4,58 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Tournament Manager</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="author" content="Nico Rubach, Theodor Houghton-Larsen, Frederic Janning">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Tournament Manager</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/app.js" charset="utf-8"></script>
+  <script src="js/home.js" charset="utf-8"></script>
+  <script src="js/teams.js" charset="utf-8"></script>
+  <script src="js/tournamentsOverview.js" charset="utf-8"></script>
+  <meta name="author" content="Nico Rubach, Theodor Houghton-Larsen, Frederic Janning">
+  <script type="text/javascript">
+    //All available pages
+    let pages = [
+      {
+        url: "/home",
+        resource: "/pages/home.html",
+        class: PageHome
+      },
+      {
+        url:"/tournaments",
+        resource: "/pages/tournamentsOverview.html",
+        class: PageTournamentsOverview
+      },
+      {
+        url: "/teams",
+        resource: "/pages/teams.html",
+        class: PageTeams
+      }
+    ];
+
+    //On page load start the application
+    window.addEventListener("load", () => {
+      let app = new App(pages);
+      app.run();
+    });
+  </script>
 </head>
 
 <body>
-    <div class="container">
-        <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#tournaments">Tournaments</a></li>
-            <li class="nav-item"><a class="nav-link" href="#teams">Teams</a></li>
-        </ul>
-        <div id="content"></div>
+  <div class="container">
+    <!-- Bootstrap navigation -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" href="#/home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#/tournaments">Tournaments</a></li>
+        <li class="nav-item"><a class="nav-link" href="#/teams">Teams</a></li>
+    </ul>
+    <div id="content">
+      <!-- Here the webpage content will be placed from pages/x.html -->
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </div>
 </body>
 
 </html>
