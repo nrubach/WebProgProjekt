@@ -1,0 +1,50 @@
+<!-- delete after testing from here -->
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/newTeam.css">
+<!-- to here -->
+
+<div class="alert alert-danger" role="alert" show>
+    <span class="faultyElement"></span> is not valid. Please try again.
+</div>
+
+<h3>Players</h3>
+<div id="players" >
+    <div class="row">
+            <div class="card col-sm-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <span>Gamertag: </span>
+                        </div>
+                        <div class="col-sm">
+                            <input id="newPlayerName" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <span>Skill rating: </span>
+                        </div>
+                        <div class="col-sm">
+                            <input id="newPlayerID" min="1" step="1" max="5000" class="form-control" type="number">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <span>Captain? </span>
+                        </div>
+                        <div class="col-sm">
+                            <select id="newPlayerCaptain" class="form-control">
+                                <option>No</option>
+                                <option>Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-success">Add Player</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+</div>
