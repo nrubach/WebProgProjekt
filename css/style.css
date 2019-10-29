@@ -1,0 +1,17 @@
+/* here be style */
+#site-title {
+  padding: 10px;
+}
+
+body {
+  background-color: rgb(4, 98, 138);
+  color: rgb(221, 221, 221);
+}
+
+a {
+  color: rgb(221, 221, 221);
+}
+
+a:hover {
+  color: rgb(255, 255, 255);
+}

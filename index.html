@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <meta name="author" content="Nico Rubach, Theodor Houghton-Larsen, Frederic Janning">
+
 </head>
 
 <body>
@@ -19,10 +20,22 @@
             <li class="nav-item"><a class="nav-link" href="#tournaments">Tournaments</a></li>
             <li class="nav-item"><a class="nav-link" href="#teams">Teams</a></li>
         </ul>
-        <div id="content"></div>
+        <div id="content">
+            <h1 id="site-title">News & Patches</h1>
+        </div>
+        <div id="twitch-embed"></div>
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script type="text/javascript">
+      new Twitch.Embed("twitch-embed", {
+        width: 854,
+        height: 480,
+        channel: "monstercat",
+        layout: "video"
+      });
+    </script>
 </body>
 
 </html>
