@@ -18,7 +18,9 @@
   <script src="js/tournamentsOverview.js" charset="utf-8"></script>
   <script src="js/tournamentDisplay.js" charset="utf-8"></script>
   <script src="js/newTeam.js" charset="utf-8"></script>
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
   <script src="js/newTournament.js" charset="utf-8"></script>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script type="text/javascript">
     //All available pages
     let pages = [
@@ -62,15 +64,24 @@
 </head>
 
 <body>
-  <div class="container">
-    <!-- Bootstrap navigation -->
+  <!--div class="container">
     <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link active" href="#/home">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#/tournaments">Tournaments</a></li>
         <li class="nav-item"><a class="nav-link" href="#/teams">Teams</a></li>
     </ul>
     <div id="content">
-      <!-- Here the webpage content will be placed from pages/x.html -->
+    </div>
+  </div -->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#/home">Nicor</a>
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#/tournaments">Tournaments</a></li>
+        <li class="nav-item"><a class="nav-link" href="#/teams">Teams</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div id="content">
     </div>
   </div>
 </body>
