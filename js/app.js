@@ -19,7 +19,13 @@ class App {
     let pageUrl = location.hash.slice(1);
     //Find pageUrl in pages array
     let matches = null;
-    let page = this._pages.find(p => matches = pageUrl.match(p.url));
+    let page;
+    this._pages.forEach((item, index) => {
+      if(item.url == pageUrl) {
+        page = item;
+      }
+    })
+    // let page = this._pages.find(p => matches = pageUrl.match(p.url));
     //Create new currentPageObj from selected class
     this.currentPageObj = new page.class(this);
     //Show content in content view
