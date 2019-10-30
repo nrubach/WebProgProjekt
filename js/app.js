@@ -18,13 +18,26 @@ class App {
     //remove # from location.hash
     let pageUrl = location.hash.slice(1);
     //Find pageUrl in pages array
-    let matches = null;
+    //let matches = null;
     let page;
-    this._pages.forEach((item, index) => {
+    // this._pages.forEach((item, index) => {
+    //   if(item.url == pageUrl) {
+    //     page = item;
+    //   }
+    // })
+
+    let pageFound = this._pages.some(function(item, index) {
       if(item.url == pageUrl) {
         page = item;
+        return true;
       }
-    })
+    });
+
+    if(pageFound != true) {
+      //TODO Alert user page wasn't found
+      return false;
+    }
+
     // let page = this._pages.find(p => matches = pageUrl.match(p.url));
     //Create new currentPageObj from selected class
     this.currentPageObj = new page.class(this);
