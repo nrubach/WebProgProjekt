@@ -14,6 +14,10 @@ div .colOV .title {
   border-radius: 3px;
 }
 
-div .colOV img {
+.blurred {
+  -webkit-filter: blur(5px);
+  -o-filter: blur(5px);
   filter: blur(5px);
+  -webkit-transition: 0.5s -webkit-filter linear;
+  -o-transition: 0.5s -o-filter linear;
 }
