@@ -20,10 +20,16 @@
   <script src="js/newTeam.js" charset="utf-8"></script>
   <script src="https://embed.twitch.tv/embed/v1.js"></script>
   <script src="js/newTournament.js" charset="utf-8"></script>
+  <script src="js/pageNotFound.js" charset="utf-8"></script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script type="text/javascript">
     //All available pages
     let pages = [
+      {
+        url:"/pageNotFound",
+        resource: "/pages/pageNotFound.html",
+        class: PageNotFound
+      },
       {
         url: "/home",
         resource: "/pages/home.html",
