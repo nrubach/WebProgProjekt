@@ -17,9 +17,10 @@ class App {
   _handleRoute() {
     //remove # from location.hash
     let pageUrl = location.hash.slice(1);
-    //Find pageUrl in pages array
-    //let matches = null;
+    /** Find pageUrl in pages array **/
     let page;
+
+    /** Old algorithm ... kept for backup **/
     // this._pages.forEach((item, index) => {
     //   if(item.url == pageUrl) {
     //     page = item;
