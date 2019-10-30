@@ -59,15 +59,21 @@ class PageTournamentsOverview {
       let col = document.createElement("div");
       col.classList.add("col-md-12", "col-lg-4", "colOV");
       col.innerHTML = "<div class=\"title\" hidden>" + item.name + "</div><img class=\"img_overview img-fluid rounded\" src=\"" + item.imagesrc + "\">";
+
       col.addEventListener("mouseenter", () => {
-        console.log("Entered " + item.id);
         col.childNodes[0].removeAttribute("hidden");
         col.childNodes[1].classList.add("blurred");
       });
+
       col.addEventListener("mouseleave", () => {
-        console.log("Left " + item.id);
         col.childNodes[0].setAttribute("hidden", "");
         col.childNodes[1].classList.remove("blurred");
+      });
+
+      col.addEventListener("click", () => {
+        //Display Tournament
+        location.href = "?id=" + item.id + "/#/tournaments/showTournament";
+
       });
 
       if(colcount >= 3) {

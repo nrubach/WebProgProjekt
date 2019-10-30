@@ -12,12 +12,14 @@ div .colOV .title {
   z-index: 10;
   font-size: 25pt;
   border-radius: 3px;
+  font-weight: 800;
+  color: white;
 }
 
 .blurred {
-  -webkit-filter: blur(5px);
-  -o-filter: blur(5px);
-  filter: blur(5px);
-  -webkit-transition: 0.5s -webkit-filter linear;
-  -o-transition: 0.5s -o-filter linear;
+  -webkit-filter: blur(5px) brightness(40%);
+  -o-filter: blur(5px) brightness(40%);
+  filter: blur(5px) brightness(40%);
+  -webkit-transition: 0.3s -webkit-filter linear;
+  -o-transition: 0.3s -o-filter linear;
 }
