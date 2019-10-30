@@ -13,7 +13,6 @@ class PageHome {
     new Twitch.Embed("twitch-embed", {
       channel: "wolfl1nk",
       layout: "video",
-      width: "100%",
       theme: "dark"
     });
   }

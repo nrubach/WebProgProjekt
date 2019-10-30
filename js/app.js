@@ -17,6 +17,7 @@ class App {
   _handleRoute() {
     //remove # from location.hash
     let pageUrl = location.hash.slice(1);
+
     /** Find pageUrl in pages array **/
     let page;
 
@@ -35,8 +36,8 @@ class App {
     });
 
     if(pageFound != true) {
-      //TODO Alert user page wasn't found
-      return false;
+      // Alert user page wasn't found
+      page = this._pages[0];
     }
 
     // let page = this._pages.find(p => matches = pageUrl.match(p.url));
@@ -49,6 +50,6 @@ class App {
   //called by PageClass.show();
   //set new content in content view
   setPageContent(htmlContent) {
-    document.getElementById("content").innerHTML = htmlContent;
+    $("#content").html(htmlContent);
   }
 }
