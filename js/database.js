@@ -3,7 +3,7 @@ class Database {
     static firebase;
     static database;
     constructor() {
-        this.firebaseConfig = {
+        /*this.firebaseConfig = {
             apiKey: "AIzaSyCx-TZAvj_WmBHOqldZE3rQTKY3LZwuIBU",
             authDomain: "webprogrammierung-93602.firebaseapp.com",
             databaseURL: "https://webprogrammierung-93602.firebaseio.com",
@@ -14,6 +14,6 @@ class Database {
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        this.database = firebase.database();
+        this.database = firebase.database();*/
     }
 }
