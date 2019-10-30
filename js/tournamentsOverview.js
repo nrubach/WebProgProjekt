@@ -4,6 +4,7 @@ class PageTournamentsOverview {
 
     //Active tournaments
     //TODO Load array from database
+    //imagesrc can be image base64 encoded
     this.tournaments = [
       {
         id: 1,
@@ -52,6 +53,11 @@ class PageTournamentsOverview {
     }
     this._app.setPageContent(htmlContent);
     this.generateTournamentCards();
+
+    //Click listener for new tournament button
+    document.getElementById("btn_newTournament").addEventListener("click", () => {
+      location.hash = "/tournaments/new";
+    })
   }
 
   //Generate the Tournament Cards from tournaments array
@@ -59,7 +65,7 @@ class PageTournamentsOverview {
     let content = document.getElementById("content")
     let colcount = 0;
     let row = document.createElement("div");
-    row.classList.add("row");
+    row.classList.add("row", "align-items-center");
     //Iterate trough tournaments array
     this.tournaments.forEach((item, index) => {
       let col = document.createElement("div");
@@ -71,6 +77,8 @@ class PageTournamentsOverview {
         col.childNodes[0].removeAttribute("hidden");
         col.childNodes[1].classList.add("blurred");
       });
+
+      //Same for touch device
       col.addEventListener("touchstart", () => {
         col.childNodes[0].removeAttribute("hidden");
         col.childNodes[1].classList.add("blurred");
@@ -81,6 +89,8 @@ class PageTournamentsOverview {
         col.childNodes[0].setAttribute("hidden", "");
         col.childNodes[1].classList.remove("blurred");
       });
+
+      //Same for touch device
       col.addEventListener("touchend", () => {
         col.childNodes[0].setAttribute("hidden", "");
         col.childNodes[1].classList.remove("blurred");
