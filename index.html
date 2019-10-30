@@ -51,37 +51,34 @@
     let pages = [
       {
         url:"/pageNotFound",
-        resource: "/pages/pageNotFound.html",
         class: PageNotFound
       },
       {
-        url: "/home",
-        resource: "/pages/home.html",
+        url: "",
+        class: PageHome
+      },
+      {
+        url: "/",
         class: PageHome
       },
       {
         url:"/tournaments",
-        resource: "/pages/tournamentsOverview.html",
         class: PageTournamentsOverview
       },
       {
         url: "/teams",
-        resource: "/pages/teams.html",
         class: PageTeams
       },
       {
           url:"/teams/new",
-          resource: "/pages/newTeam.html",
           class: PageNewTeam
       },
       {
           url:"/tournaments/new",
-          resource: "/pages/newTournament.html",
           class: PageNewTournament
       },
       {
           url:"/tournaments/showTournament",
-          resource: "/pages/tournamentDisplay.html",
           class: PageTournamentDisplay
       }
     ];
@@ -97,7 +94,7 @@
 
   <!-- Bootstrap dark navbar -->
   <nav class="navbar sticky-top navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="#/home">Tournament Manager</a>
+    <a class="navbar-brand" href="#/">Tournament Manager</a>
     <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" href="#/tournaments">Tournaments</a></li>
         <li class="nav-item"><a class="nav-link" href="#/teams">Teams</a></li>

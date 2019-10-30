@@ -11,4 +11,8 @@ class PageTournamentDisplay {
     }
     this._app.setPageContent(htmlContent);
   }
+
+  showTournament(id) {
+    this.currentTournament = id;
+  }
 }
