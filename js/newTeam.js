@@ -2,7 +2,6 @@ class PageNewTeam {
 
   constructor(app) {
     this._app = app;
-
   }
 
   async show() {
@@ -13,13 +12,28 @@ class PageNewTeam {
     }
     this._app.setPageContent(htmlContent);
 
-    this.alertBox = document.getElementById("alertBox");
-    this.players = document.getElementById("players");
+
+    this.alertBox = $("#alertBox");
+
+    alertBox.hidden = true;
+    this.players = $("#players");
     console.log("PageNewTeam created");
-    document.getElementById("addNewPlayer").addEventListener("click", this.submitNewPlayer);
+    $("#addNewPlayer").on("click", this.setAlertMessage("Nico"));
   }
 
   submitNewPlayer() {
-    console.log("hello");
+    console.log(this);
+    this.setAlertMessage("Nico");
+  }
+
+  setAlertMessage(faultyElementText) {
+    db = new Database();
+    $("#faultyElement").innerHTML = faultyElementText;
+    $("#alertBox").hidden = false;
+    Database.database.ref('users/' + userId).set({
+      username: name,
+      email: email,
+      profile_picture : imageUrl
+    });
   }
 }
