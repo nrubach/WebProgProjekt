@@ -71,9 +71,17 @@ class PageTournamentsOverview {
         col.childNodes[0].removeAttribute("hidden");
         col.childNodes[1].classList.add("blurred");
       });
+      col.addEventListener("touchstart", () => {
+        col.childNodes[0].removeAttribute("hidden");
+        col.childNodes[1].classList.add("blurred");
+      });
 
       //Opposite to above -> Unblurr + Hide name
       col.addEventListener("mouseleave", () => {
+        col.childNodes[0].setAttribute("hidden", "");
+        col.childNodes[1].classList.remove("blurred");
+      });
+      col.addEventListener("touchend", () => {
         col.childNodes[0].setAttribute("hidden", "");
         col.childNodes[1].classList.remove("blurred");
       });
