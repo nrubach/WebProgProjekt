@@ -50,6 +50,6 @@ class App {
   //called by PageClass.show();
   //set new content in content view
   setPageContent(htmlContent) {
-    document.getElementById("content").innerHTML = htmlContent;
+    $("#content").html(htmlContent);
   }
 }
