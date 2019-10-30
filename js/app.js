@@ -3,8 +3,7 @@ class App {
     this._pages = pageList;
 
     //Load homepage on initial app creation
-    this.currentPageObj = new PageHome(this);
-    this.currentPageObj.show();
+    this._handleRoute();
   }
 
   run() {
