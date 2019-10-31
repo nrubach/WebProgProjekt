@@ -14,8 +14,13 @@
 <h3>Name</h3>
 <input id="teamName" type="text" class="form-control" placeholder="Enter your team name here...">
 <h3>Logo</h3>
-<input type="file" class="form-control-file" name="logo" id="teamLogo">
-
+<form runat="server" action="erstellen.php" method="post" enctype="multipart/form-data" name="erstellen" id="erstellen_form">
+        <input name="bild" type="file" id="inputfile" required class="erstellen_input"><label for="inputfile" id="inputfilelabel">Datei auswählen</label>
+</form>
+<div id="tvarea">
+    <label for="inputfile" id="inputbox">Datei hier ablegen oder klicken zum Auswählen.</label>
+    <img id="thumbnail" src="" onerror="this.style.display='none'">
+</div>
 <h3>Players</h3>
 <div id="players" class="row">
     <div class="card col-sm-4">
