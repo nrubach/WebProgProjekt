@@ -1,12 +1,15 @@
-<!-- here be html -->
-<!-- more html -->
 <!DOCTYPE html>
 <html>
 
 <head>
+  <!-- Meta Tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Tournament Manager</title>
+  <meta name="author" content="Nico Rubach, Theodor Houghton-Larsen, Frederic Janning">
+  <meta name="description" content="A page to mage all your tournaments and teams!">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home.css">
@@ -15,11 +18,32 @@
   <link rel="stylesheet" href="css/teams.css">
   <link rel="stylesheet" href="css/tournamentsOverview.css">
   <link rel="stylesheet" href="css/tournamentDisplay.css">
-  <meta name="author" content="Nico Rubach, Theodor Houghton-Larsen, Frederic Janning">
 
-
+  <!-- Import of 3rd party scripts -->
   <script src="js/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
+  <!-- Firebase configuration -->
+  <script>
+    // Your web app's Firebase configuration
+    let firebaseConfig = {
+      apiKey: "AIzaSyCx-TZAvj_WmBHOqldZE3rQTKY3LZwuIBU",
+      authDomain: "webprogrammierung-93602.firebaseapp.com",
+      databaseURL: "https://webprogrammierung-93602.firebaseio.com",
+      projectId: "webprogrammierung-93602",
+      storageBucket: "webprogrammierung-93602.appspot.com",
+      messagingSenderId: "1019422608610",
+      appId: "1:1019422608610:web:a99e7c267cf5203c77a2bb"
+    };
+    // Initialize Firebase
+    let firebaseApp = firebase.initializeApp(firebaseConfig);
+    let database = firebase.database();
+  </script>
+
+  <!-- Import of own scripts -->
   <script src="js/app.js" charset="utf-8"></script>
   <script src="js/database.js" charset="utf-8"></script>
   <script src="js/home.js" charset="utf-8"></script>
@@ -27,10 +51,10 @@
   <script src="js/tournamentsOverview.js" charset="utf-8"></script>
   <script src="js/tournamentDisplay.js" charset="utf-8"></script>
   <script src="js/newTeam.js" charset="utf-8"></script>
-  <script src="https://embed.twitch.tv/embed/v1.js"></script>
   <script src="js/newTournament.js" charset="utf-8"></script>
   <script src="js/pageNotFound.js" charset="utf-8"></script>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <!-- Starting script for this page -->
   <script type="text/javascript">
     //All available pages
     let pages = [
@@ -73,19 +97,27 @@
       app.run();
     });
   </script>
+
+  <!-- Title -->
+  <title>Tournament Manager</title>
+
 </head>
 
 <body>
 
   <!-- Bootstrap dark navbar -->
   <nav class="navbar sticky-top navbar-expand-sm bg-dark navbar-dark">
+    <!-- Container to fit navbar to other content below -->
     <div class="container">
       <div class="navbar-header">
+        <!-- Navigation item home -->
         <a class="navbar-brand" href="#/">Tournament Manager</a>
       </div>
       <div class="nav navbar-nav">
         <ul class="navbar-nav">
+            <!-- Navigation item tournaments -->
             <li class="nav-item"><a class="nav-link" href="#/tournaments">Tournaments</a></li>
+            <!-- Navigation item teams -->
             <li class="nav-item"><a class="nav-link" href="#/teams">Teams</a></li>
         </ul>
       </div>
@@ -99,26 +131,6 @@
       <!-- This will be replaced by something from pages -->
     </div>
   </div>
-
-
-
-  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
-  <script>
-    // Your web app's Firebase configuration
-    let firebaseConfig = {
-      apiKey: "AIzaSyCx-TZAvj_WmBHOqldZE3rQTKY3LZwuIBU",
-      authDomain: "webprogrammierung-93602.firebaseapp.com",
-      databaseURL: "https://webprogrammierung-93602.firebaseio.com",
-      projectId: "webprogrammierung-93602",
-      storageBucket: "webprogrammierung-93602.appspot.com",
-      messagingSenderId: "1019422608610",
-      appId: "1:1019422608610:web:a99e7c267cf5203c77a2bb"
-    };
-    // Initialize Firebase
-    let firebaseApp = firebase.initializeApp(firebaseConfig);
-    let database = firebase.database();
-  </script>
 </body>
 
 </html>
