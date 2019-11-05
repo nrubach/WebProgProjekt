@@ -17,7 +17,7 @@ div .colOV .title {
   color: white;
 }
 
-.blurred {
+.dark {
   -webkit-filter: brightness(30%);
   -o-filter: brightness(30%);
   filter: brightness(30%);

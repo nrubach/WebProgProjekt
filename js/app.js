@@ -35,7 +35,7 @@ class App {
     });
 
     if(pageFound != true) {
-      // Alert user page wasn't found
+      // SHOW 404 if page wasn't found
       page = this._pages[0];
     }
 

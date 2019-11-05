@@ -75,25 +75,25 @@ class PageTournamentsOverview {
       //Event listener "onHover" -> Mouse enters -> Blurr + Show tournament name
       col.addEventListener("mouseenter", () => {
         col.childNodes[0].removeAttribute("hidden");
-        col.childNodes[1].classList.add("blurred");
+        col.childNodes[1].classList.add("dark");
       });
 
       //Same for touch device
       col.addEventListener("touchstart", () => {
         col.childNodes[0].removeAttribute("hidden");
-        col.childNodes[1].classList.add("blurred");
+        col.childNodes[1].classList.add("dark");
       });
 
       //Opposite to above -> Unblurr + Hide name
       col.addEventListener("mouseleave", () => {
         col.childNodes[0].setAttribute("hidden", "");
-        col.childNodes[1].classList.remove("blurred");
+        col.childNodes[1].classList.remove("dark");
       });
 
       //Same for touch device
       col.addEventListener("touchend", () => {
         col.childNodes[0].setAttribute("hidden", "");
-        col.childNodes[1].classList.remove("blurred");
+        col.childNodes[1].classList.remove("dark");
       });
 
       //On Click route to Tournament Detail page
