@@ -5,44 +5,44 @@ class PageTournamentsOverview {
     //Active tournaments
     //TODO Load array from database
     //imagesrc can be image base64 encoded
-    this.tournaments = [
-      {
-        id: 1,
-        name: "Overwatch League",
-        imagesrc: "res/sample/owleague.jpg",
-      },
-      {
-        id: 2,
-        name: "Contenders",
-        imagesrc: "res/sample/owleague.jpg",
-      },
-      {
-        id: 3,
-        name: "Dorfcup",
-        imagesrc: "res/sample/owleague.jpg",
-      },
-      {
-        id: 4,
-        name: "Noch Was Turnier",
-        imagesrc: "res/sample/owleague.jpg",
-      },
-      {
-        id: 5,
-        name: "DHBW Cup",
-        imagesrc: "res/sample/owleague.jpg",
-      },
-      {
-        id: 6,
-        name: "Weltmeisterschaft",
-        imagesrc: "res/sample/owleague.jpg",
-      },
-      {
-        id: 7,
-        name: "Weltmeischaft",
-        imagesrc: "res/sample/owleague.jpg",
-      },
-    ]
-  }
+  //   this.tournaments = [
+  //     {
+  //       id: 1,
+  //       name: "Overwatch League",
+  //       imagesrc: "res/sample/owleague.jpg",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Contenders",
+  //       imagesrc: "res/sample/owleague.jpg",
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "Dorfcup",
+  //       imagesrc: "res/sample/owleague.jpg",
+  //     },
+  //     {
+  //       id: 4,
+  //       name: "Noch Was Turnier",
+  //       imagesrc: "res/sample/owleague.jpg",
+  //     },
+  //     {
+  //       id: 5,
+  //       name: "DHBW Cup",
+  //       imagesrc: "res/sample/owleague.jpg",
+  //     },
+  //     {
+  //       id: 6,
+  //       name: "Weltmeisterschaft",
+  //       imagesrc: "res/sample/owleague.jpg",
+  //     },
+  //     {
+  //       id: 7,
+  //       name: "Weltmeischaft",
+  //       imagesrc: "res/sample/owleague.jpg",
+  //     },
+  //   ]
+ }
 
   //Default rounter show content from tournamentOverview.html
   async show() {
@@ -52,12 +52,25 @@ class PageTournamentsOverview {
       htmlContent = await html.text();
     }
     this._app.setPageContent(htmlContent);
-    this.generateTournamentCards();
 
     //Click listener for new tournament button
     document.getElementById("btn_newTournament").addEventListener("click", () => {
       location.hash = "/tournaments/new";
     })
+
+    if(this._tournaments == null) {
+      await database.ref('/tournaments/').once('value').then((snapshot) => {
+        this._tournaments = snapshot.val();
+      });
+    }
+
+    this.generateTournamentCards();
+  }
+
+  async updateTournaments() {
+    await database.ref('/tournaments/').once('value').then((snapshot) => {
+      this._tournaments = snapshot.val();
+    });
   }
 
   //Generate the Tournament Cards from tournaments array
@@ -67,10 +80,10 @@ class PageTournamentsOverview {
     let row = document.createElement("div");
     row.classList.add("row", "align-items-center");
     //Iterate trough tournaments array
-    this.tournaments.forEach((item, index) => {
+    this._tournaments.forEach((item, index) => {
       let col = document.createElement("div");
       col.classList.add("col-md-12", "col-lg-4", "colOV");
-      col.innerHTML = "<div class=\"title\" hidden>" + item.name + "</div><img class=\"img_overview img-fluid rounded\" src=\"" + item.imagesrc + "\">";
+      col.innerHTML = "<div class=\"title\" hidden>" + item.name + "</div><img class=\"img_overview img-fluid rounded\" src=\"" + item.logo + "\">";
 
       //Event listener "onHover" -> Mouse enters -> Blurr + Show tournament name
       col.addEventListener("mouseenter", () => {

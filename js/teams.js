@@ -14,7 +14,21 @@ class PageTeams {
     //Click listener for new tournament button
     document.getElementById("btn_newTeam").addEventListener("click", () => {
       location.hash = "/teams/new";
-    })
+    });
+
+    if(this._teams == null) {
+      await database.ref('/teams/').once('value').then((snapshot) => {
+        this._teams = snapshot.val();
+      });
+    }
+
+    this.generateTeamCards();
+  }
+
+  async updateTeams() {
+    await database.ref('/teams/').once('value').then((snapshot) => {
+      this._teams = snapshot.val();
+    });
   }
   //Generate the Tournament Cards from tournaments array
   generateTeamCards() {
@@ -23,10 +37,10 @@ class PageTeams {
     let row = document.createElement("div");
     row.classList.add("row", "align-items-center");
     //Iterate trough tournaments array
-    this.tournaments.forEach((item, index) => {
+    this._teams.forEach((item, index) => {
       let col = document.createElement("div");
       col.classList.add("col-md-12", "col-lg-4", "colOV");
-      col.innerHTML = "<div class=\"title\" hidden>" + item.name + "</div><img class=\"img_overview img-fluid rounded\" src=\"" + item.imagesrc + "\">";
+      col.innerHTML = "<div class=\"title\" hidden>" + item.name + "</div><img class=\"img_overview img-fluid rounded\" src=\"" + item.logo + "\">";
 
       //Event listener "onHover" -> Mouse enters -> Blurr + Show tournament name
       col.addEventListener("mouseenter", () => {
@@ -57,7 +71,7 @@ class PageTeams {
         //Display Tournament
         //Pass ID to display the right tournament on next page
         //location.href = "?id=" + item.id + "/#/teams/showTeam";
-        console.log("Details zeigen für team " + item.id);
+        console.log("Details zeigen für team " + item.key);
 
       });
 
