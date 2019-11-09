@@ -95,7 +95,7 @@ class PageNewTeam {
     if ($("#teamName").val() == "") {
       $("#alertBox").show();
       $("#faultyElement").html("Team name");
-    } else if (newTeamContext.playerObjects.length < 6) {
+    } else if (newTeamContext.playerObjects.length < 2) {
       $("#alertBox").show();
       $("#faultyElement").html("The number of players");
     } else {

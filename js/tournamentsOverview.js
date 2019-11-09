@@ -80,7 +80,8 @@ class PageTournamentsOverview {
     let row = document.createElement("div");
     row.classList.add("row", "align-items-center");
     //Iterate trough tournaments array
-    this._tournaments.forEach((item, index) => {
+    Object.keys(this._tournaments).forEach((key, index) => {
+      let item = this._tournaments[key];
       let col = document.createElement("div");
       col.classList.add("col-md-12", "col-lg-4", "colOV");
 

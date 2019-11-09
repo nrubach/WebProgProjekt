@@ -37,7 +37,8 @@ class PageTeams {
     let row = document.createElement("div");
     row.classList.add("row", "align-items-center");
     //Iterate trough tournaments array
-    this._teams.forEach((item, index) => {
+    Object.keys(this._teams).forEach((key) => {
+      let item = this._teams[key];
       let col = document.createElement("div");
       col.classList.add("col-md-12", "col-lg-4", "colOV", "flip-container");
 
@@ -68,7 +69,8 @@ class PageTeams {
       let back = document.createElement("div");
       back.classList.add("back");
       back.innerHTML = "<h3 class='text-info teamName'>" + item.name + "</h3>Average skill rating - <span class='text-warning'>" + item.avgRating + "</span><h5 class='text-info playersTitle'>Players</h5>";
-      item.players.forEach((playerItem, playerIndex) => {
+      Object.keys(item.players).forEach((playerKey) => {
+        let playerItem = item.players[playerKey];
         let playerDiv = document.createElement("div");
         let captain = "";
         if(playerItem.captain == "Yes") {
