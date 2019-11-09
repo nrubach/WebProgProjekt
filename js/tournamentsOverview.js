@@ -83,7 +83,7 @@ class PageTournamentsOverview {
     this._tournaments.forEach((item, index) => {
       let col = document.createElement("div");
       col.classList.add("col-md-12", "col-lg-4", "colOV");
-      col.innerHTML = "<div class=\"title\" hidden>" + item.name + "</div><img class=\"img_overview img-fluid rounded\" src=\"" + item.logo + "\">";
+      col.innerHTML = "<div class=\"title text-info\" hidden>" + item.name + "</div><img class=\"img_overview img-fluid rounded\" src=\"" + item.logo + "\">";
 
       //Event listener "onHover" -> Mouse enters -> Blurr + Show tournament name
       col.addEventListener("mouseenter", () => {

@@ -3,3 +3,7 @@
 .navbar {
   margin-bottom: 10px;
 }
+
+body {
+  min-width: 250px;
+}

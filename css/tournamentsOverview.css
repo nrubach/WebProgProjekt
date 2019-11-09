@@ -2,7 +2,6 @@ div .colOV {
   box-sizing: border-box;
   padding: 10px;
   text-align: center;
-  overflow: hidden;
 }
 
 div .colOV .title {
@@ -14,7 +13,6 @@ div .colOV .title {
   font-size: 25pt;
   border-radius: 3px;
   font-weight: 800;
-  color: white;
 }
 
 .dark {

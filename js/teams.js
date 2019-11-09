@@ -39,41 +39,70 @@ class PageTeams {
     //Iterate trough tournaments array
     this._teams.forEach((item, index) => {
       let col = document.createElement("div");
-      col.classList.add("col-md-12", "col-lg-4", "colOV");
-      col.innerHTML = "<div class=\"title\" hidden>" + item.name + "</div><img class=\"img_overview img-fluid rounded\" src=\"" + item.logo + "\">";
+      col.classList.add("col-md-12", "col-lg-4", "colOV", "flip-container");
 
-      //Event listener "onHover" -> Mouse enters -> Blurr + Show tournament name
-      col.addEventListener("mouseenter", () => {
-        col.childNodes[0].removeAttribute("hidden");
-        col.childNodes[1].classList.add("dark");
-      });
+      let flipper = document.createElement("div");
+      flipper.classList.add("flipper");
+      col.appendChild(flipper);
 
-      //Same for touch device
-      col.addEventListener("touchstart", () => {
-        col.childNodes[0].removeAttribute("hidden");
-        col.childNodes[1].classList.add("dark");
-      });
+      let spacer = document.createElement("img");
+      spacer.classList.add("spacer", "img_overview", "img-fluid", "rounded");
+      spacer.src = item.logo;
+      col.appendChild(spacer);
 
-      //Opposite to above -> Unblurr + Hide name
-      col.addEventListener("mouseleave", () => {
-        col.childNodes[0].setAttribute("hidden", "");
-        col.childNodes[1].classList.remove("dark");
-      });
+      let front = document.createElement("div");
+      front.classList.add("front");
 
-      //Same for touch device
-      col.addEventListener("touchend", () => {
-        col.childNodes[0].setAttribute("hidden", "");
-        col.childNodes[1].classList.remove("dark");
-      });
+      let teamName = document.createElement("div");
+      teamName.classList.add("title", "text-info");
+      teamName.setAttribute("hidden", "");
+      teamName.innerText = item.name;
+      front.appendChild(teamName);
 
-      //On Click route to Tournament Detail page
+      let teamLogo = document.createElement("img");
+      teamLogo.classList.add("img_overview", "img-fluid", "rounded");
+      teamLogo.src = item.logo;
+      front.appendChild(teamLogo);
+      flipper.appendChild(front);
+
+      let back = document.createElement("div");
+      back.classList.add("back", "hide");
+      back.innerText = "Some Content";
+      flipper.appendChild(back);
+
+      //Listener for flip animation
       col.addEventListener("click", () => {
+        col.classList.toggle("flip");
         //Display Tournament
         //Pass ID to display the right tournament on next page
         //location.href = "?id=" + item.id + "/#/teams/showTeam";
         console.log("Details zeigen für team " + item.key);
-
       });
+
+      //Event listener "onHover" -> Mouse enters -> Blurr + Show tournament name
+      col.addEventListener("mouseenter", () => {
+        teamName.removeAttribute("hidden");
+        teamLogo.classList.add("dark");
+      });
+
+      //Same for touch device
+      col.addEventListener("touchstart", () => {
+        teamName.removeAttribute("hidden");
+        teamLogo.classList.add("dark");
+      });
+
+      //Opposite to above -> Unblurr + Hide name
+      col.addEventListener("mouseleave", () => {
+        teamName.setAttribute("hidden", "");
+        teamLogo.classList.remove("dark");
+      });
+
+      //Same for touch device
+      col.addEventListener("touchend", () => {
+        teamName.setAttribute("hidden", "");
+        teamLogo.classList.remove("dark");
+      });
+
 
       //If the current Row is full add it to content and create a new one
       if(colcount >= 3) {

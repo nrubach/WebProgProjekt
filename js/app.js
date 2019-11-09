@@ -9,6 +9,11 @@ class App {
     this._pages.forEach((page, index) => {
       this._instances[page.url] = new page.class(this);
     });
+
+    //Fetch data from Firebase for quicker page loading later
+    this._instances["/tournaments"].updateTournaments();
+    this._instances["/teams"].updateTeams();
+
     //Load homepage on initial app creation
     this._handleRoute();
   }
