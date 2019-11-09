@@ -7,3 +7,7 @@
 body {
   min-width: 250px;
 }
+
+.CaiApp a {
+  text-decoration: none;
+}

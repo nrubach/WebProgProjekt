@@ -66,13 +66,24 @@ class PageTeams {
       flipper.appendChild(front);
 
       let back = document.createElement("div");
-      back.classList.add("back", "hide");
-      back.innerText = "Some Content";
+      back.classList.add("back");
+      back.innerHTML = "<h3 class='text-info teamName'>" + item.name + "</h3>Average skill rating - <span class='text-warning'>" + item.avgRating + "</span><h5 class='text-info playersTitle'>Players</h5>";
+      item.players.forEach((playerItem, playerIndex) => {
+        let playerDiv = document.createElement("div");
+        let captain = "";
+        if(playerItem.captain == "Yes") {
+          captain = "<span class='text-warning'>Captain:</span> ";
+        }
+        playerDiv.innerHTML = captain + playerItem.name + " - <span class='text-warning'>" + playerItem.sr + "</span> SR";
+        back.appendChild(playerDiv);
+      });
       flipper.appendChild(back);
 
       //Listener for flip animation
       col.addEventListener("click", () => {
         col.classList.toggle("flip");
+        back.classList.toggle("onTop");
+        col.classList.toggle("onTop");
         //Display Tournament
         //Pass ID to display the right tournament on next page
         //location.href = "?id=" + item.id + "/#/teams/showTeam";
