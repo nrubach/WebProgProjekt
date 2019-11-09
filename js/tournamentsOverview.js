@@ -124,7 +124,7 @@ class PageTournamentsOverview {
       col.addEventListener("click", () => {
         //Display Tournament
         //Pass ID to display the right tournament on next page
-        location.href = "?id=" + item.id + "/#/tournaments/showTournament";
+        location.href = "?key=" + item.key + "/#/tournaments/showTournament";
 
       });
 
