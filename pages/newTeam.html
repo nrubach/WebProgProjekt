@@ -15,7 +15,7 @@
 <input id="teamName" type="text" class="form-control" placeholder="Enter your team name here...">
 <h3>Logo</h3>
 <form runat="server" action="erstellen.php" method="post" enctype="multipart/form-data" name="erstellen" id="erstellen_form">
-        <input name="bild" type="file" id="inputfile" required class="erstellen_input"><label for="inputfile" id="inputfilelabel">Datei auswählen</label>
+    <input name="bild" type="file" id="inputfile" required class="erstellen_input"><label for="inputfile" id="inputfilelabel">Datei auswählen</label>
 </form>
 <div id="tvarea">
     <label for="inputfile" id="inputbox">Datei hier ablegen oder klicken zum Auswählen.</label>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="row">
-                <button id="addNewPlayer" type="submit" class="btn btn-success col-sm-12">+ Add Player</button>
+                <button id="addNewPlayer" type="submit" class="btn btn-outline-success col-sm-12">+ Add Player</button>
             </div>
         </div>
     </div>
@@ -87,3 +87,6 @@
         </div>-->
 
 </div>
+
+<button id="submitTeam" type="submit" class="btn btn-success col-sm-12">Submit Team</button>
+            

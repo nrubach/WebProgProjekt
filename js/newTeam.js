@@ -1,13 +1,14 @@
 let newTeamContext;
 
+
 class PageNewTeam {
 
-  static id = 0;
-  faultyElement;
+  playerObjects;
 
   constructor(app) {
     this._app = app;
     newTeamContext = this;
+    this.playerObjects = new Array();
   }
 
   async show() {
@@ -18,10 +19,10 @@ class PageNewTeam {
     }
     this._app.setPageContent(htmlContent);
 
-    this.alertBox = $("#alertBox");
-    alertBox.hidden = true;
+    $("#alertBox").hide();
     this.players = $("#players");
     $("#addNewPlayer").on("click", this.submitPlayer);
+    $("#submitTeam").on("click", this.submitTeam);
 
     // Setup the dnd listeners.
     this.dropZone = document.getElementById('tvarea');
@@ -35,23 +36,24 @@ class PageNewTeam {
 
   submitPlayer() {
     if ($("#newPlayerName").val().length < 2) {
-      alertBox.hidden = false;
-      $("#faultyElement").html("Name");
+      $("#alertBox").show();
+      $("#faultyElement").html("Gamertag");
       return;
     }
     if ($("#newPlayerSR").val() < 0 || $("#newPlayerSR").val() > 5000) {
-      alertBox.hidden = false;
+      $("#alertBox").show();
       $("#faultyElement").html("Skill Rating");
       return;
     }
 
-    database.ref('teams/' + "players/" + PageNewTeam.id).set({
+    // Add objects of player to playerobjects
+    newTeamContext.playerObjects.push({
       name: $("#newPlayerName").val(),
       sr: $("#newPlayerSR").val(),
       captain: $("#newPlayerCaptain").val()
     });
-    console.log("Written to database");
-    PageNewTeam.id++;
+
+    console.log(newTeamContext.playerObjects);
 
     // Generate card for saved player
     let player = $('<div class="card col-sm-4">' +
@@ -89,6 +91,42 @@ class PageNewTeam {
     $("#newPlayerCaptain").val("No")
   }
 
+  submitTeam() {
+    if ($("#teamName").val() == "") {
+      $("#alertBox").show();
+      $("#faultyElement").html("Team name");
+    } else if (newTeamContext.playerObjects.length < 6) {
+      $("#alertBox").show();
+      $("#faultyElement").html("The number of players");
+    } else {
+      let numberOfPlayers = 0;
+      let avgSr = 0;
+      newTeamContext.playerObjects.forEach(player => {
+        numberOfPlayers++;
+        console.log(player.sr);
+        avgSr += parseInt(player.sr, 10);
+      });
+      avgSr = avgSr / numberOfPlayers;
+      let teamref = database.ref('teams/').push({
+        avgRating: Math.round(avgSr),
+        name: $("#teamName").val()
+      });
+      newTeamContext.playerObjects.forEach(player => {
+        database.ref('teams/' + teamref.key).update({
+          id: teamref.key
+        });
+      });
+      newTeamContext.playerObjects.forEach(player => {
+        database.ref('teams/' + teamref.key +'/players').push({
+          name: player.name,
+          sr: player.sr,
+          captain: player.captain
+        });
+      });
+      console.log("Written to database");
+    }
+  }
+
   handleFileSelect(evt) {
         evt.stopPropagation();
         evt.preventDefault();
@@ -119,6 +157,4 @@ class PageNewTeam {
             reader.readAsDataURL(input.files[0]);
         }
     }
-
-
 }
