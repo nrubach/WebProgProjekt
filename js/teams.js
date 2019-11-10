@@ -16,9 +16,11 @@ class PageTeams {
       location.hash = "/teams/new"; //Redirect to #/teams/new page
     });
 
-    //Safety condition -> _teams should not be null but just in case load it from database
+    //_teams should already be loaded. This is only executed if someone reloads on /teams page
     if(this._teams == null) {
-      updateTeams();
+      await database.ref('/teams/').once('value').then((snapshot) => {
+        this._teams = snapshot.val(); //get /teams/ Object from databse
+      });
     }
 
     this.generateTeamCards();

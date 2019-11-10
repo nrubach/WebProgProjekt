@@ -17,9 +17,11 @@ class PageTournamentsOverview {
       location.hash = "/tournaments/new"; //Set hash to /tournaments/new to navigate to new tournament page
     })
 
-    // If the _tournaments array is null (for whatever reason...it sould not be the case) load it from database
+    //_tournaments should already be loaded. This is only executed if someone reloads on /tournamentsOverview page
     if(this._tournaments == null) {
-      updateTournaments();
+      await database.ref('/tournaments/').once('value').then((snapshot) => {
+        this._tournaments = snapshot.val(); //Write databse snapshot in _tournaments object
+      });
     }
 
     // Genereate the overview cards
