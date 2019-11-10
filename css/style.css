@@ -10,5 +10,5 @@ body {
 
 /* Links in chatbot */
 .CaiApp a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
