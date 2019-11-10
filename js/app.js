@@ -1,8 +1,5 @@
-let that;
-
 class App {
   constructor(pageList) {
-    that = this;
     this._pages = pageList;
     this._instances = [];
 
