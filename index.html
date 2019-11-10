@@ -21,10 +21,8 @@
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/newTeam.css">
   <link rel="stylesheet" href="css/newTournament.css">
-  <link rel="stylesheet" href="css/teams.css">
-  <link rel="stylesheet" href="css/tournamentsOverview.css">
+  <link rel="stylesheet" href="css/overviews.css">
   <link rel="stylesheet" href="css/tournamentDisplay.css">
-  <link rel="stylesheet" href="/css/flip.css">
 
   <!-- Import of 3rd party scripts -->
   <script src="js/jquery.min.js"></script>
@@ -66,35 +64,35 @@
     //All available pages
     let pages = [
       {
-        url:"/pageNotFound",
+        url:"/pageNotFound", //404 Page: Can only be accessed by typing crap after #askdjf in URL
         class: PageNotFound
       },
       {
-        url: "/",
+        url: "/", //Start page
         class: PageHome
       },
       {
-        url:"/tournaments",
+        url:"/tournaments", //Tournament overview page
         class: PageTournamentsOverview
       },
       {
-        url: "/teams",
+        url: "/teams", //Team overview page
         class: PageTeams
       },
       {
-          url:"/teams/new",
+          url:"/teams/new", //Create new team page
           class: PageNewTeam
       },
       {
-          url:"/tournaments/new",
+          url:"/tournaments/new", //Create new tournament page
           class: PageNewTournament
       },
       {
-          url:"/tournaments/showTournament",
+          url:"/tournaments/showTournament", //Tournament detail page
           class: PageTournamentDisplay
       }
     ];
-    //On page load start the application
+    //On page load start app.js / App()
     window.addEventListener("load", () => {
       let app = new App(pages);
       app.run();
@@ -122,10 +120,10 @@
             <li class="nav-item"><a class="nav-link" href="#/tournaments">Tournaments</a></li>
             <!-- Navigation item teams -->
             <li class="nav-item"><a class="nav-link" href="#/teams">Teams</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        </ul> <!-- End of Nav -->
+      </div> <!-- End of Navbar -->
+    </div> <!-- End of nav container -->
+  </nav> <!-- End of navigation -->
 
   <!-- Bootstrap container to wrap content -->
   <div class="container">
@@ -134,12 +132,13 @@
       <!-- This will be replaced by something from pages -->
     </div>
     <!-- Self developed chatbot with SAP Conversational AI: https://cai.tools.sap/nrubach/tournamentmanager/ (Shuld be accessible with any free CAI account)-->
+    <!-- This script has the be at the end because it has to be loaded after the body is already rendered -->
     <script src="https://cdn.cai.tools.sap/webchat/webchat.js"
     channelId="a6fc7496-01af-41fc-8ce9-9c809acd592a"
     token="a3c107076fe7afec675939ffa5cf4bdf"
     id="cai-webchat"
     ></script>
-  </div>
+  </div> <!-- End of main container -->
 </body>
 
 </html>

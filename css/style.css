@@ -1,4 +1,4 @@
-/* here be style */
+/* General style of whole document (index.html) */
 
 .navbar {
   margin-bottom: 10px;
@@ -8,6 +8,7 @@ body {
   min-width: 250px;
 }
 
+/* Links in chatbot */
 .CaiApp a {
   text-decoration: none;
 }

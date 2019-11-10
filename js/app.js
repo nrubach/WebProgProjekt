@@ -4,8 +4,9 @@ class App {
   constructor(pageList) {
     that = this;
     this._pages = pageList;
-    this._instances = []
+    this._instances = [];
 
+    //For performance reasons create an instance of each existing class / page which will be used for the whole session
     this._pages.forEach((page, index) => {
       this._instances[page.url] = new page.class(this);
     });
@@ -29,6 +30,7 @@ class App {
     //remove # from location.hash
     let pageUrl = location.hash.slice(1);
 
+    //If there is no hash use "/" to get to the homepage
     if(pageUrl == "") {
       pageUrl = "/";
     }
@@ -43,13 +45,19 @@ class App {
     //   }
     // })
 
-    let pageFound = this._pages.some(function(item, index) {
+    /** This search algorithm iterates trough pages until it finds an exact match for pageUrl.
+      Once it finds it the page object is set to that matched item and the some() function returns true.
+      If nothing is matched some() returns false.
+      In comparison to the example .match() algorithm this method only matches exact items and ends once it finds a valid page
+    **/
+    let pageFound = this._pages.some((item, index) => {
       if(item.url == pageUrl) {
         page = item;
         return true;
       }
     });
 
+    // If .some() didn't get a hit -> redirect to 404 Page
     if(pageFound != true) {
       // SHOW 404 if page wasn't found
       page = this._pages[0];
