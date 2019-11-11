@@ -1,30 +1,28 @@
-<!-- delete after testing from here -->
-<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/newTeam.css">
-
-<script src="../js/newTeam.js" charset="utf-8"></script>
-<!-- to here -->
-
 <div id="alertBox" class="alert alert-danger" role="alert">
     <span id="faultyElement"></span> is not valid. Please try again.
 </div>
-
-<h1>Team Details</h1>
-<h3>Name</h3>
-<input id="teamName" type="text" class="form-control" placeholder="Enter your team name here...">
-<h3>Logo</h3>
-<form runat="server" action="erstellen.php" method="post" enctype="multipart/form-data" name="erstellen" id="erstellen_form">
-    <input name="bild" type="file" id="inputfile" required class="erstellen_input"><label for="inputfile" id="inputfilelabel">Datei auswählen</label>
-</form>
-<div id="tvarea">
-    <label for="inputfile" id="inputbox">Datei hier ablegen oder klicken zum Auswählen.</label>
-    <img id="thumbnail" src="" onerror="this.style.display='none'">
+<div class="row teamelements">
+    <h1>Team details<br></h1>
 </div>
-<h3>Players</h3>
-<div id="players" class="row">
+<div class="row teamelements">
+    <h3>Name:<br></h3>
+    <input id="teamName" type="text" class="form-control" placeholder="Enter your team name here...">
+</div>
+<div class="row">
+    <h3>Logo:<br></h3>
+</div>
+<div class="row teamelements">
+    <input name="bild" type="file" id="inputfile" class="erstellen_input">
+</div>
+<div id="preview">
+    <img id="thumbnail" src="" onerror="this.style.display='none'" class="col-lg-6 col-md-12">
+</div>
+<div class="row teamelements">
+    <h3>Players:<br></h3>
+</div>
+<div id="players" class="row teamelements">
     <div class="card col-sm-4">
-        <div class="card-body">
+        <div class="card-body playercard">
             <div class="row">
                 <div class="col-lg">
                     <span>Gamertag: </span>
@@ -53,7 +51,7 @@
                 </div>
             </div>
             <div class="row">
-                <button id="addNewPlayer" type="submit" class="btn btn-outline-success col-sm-12">+ Add Player</button>
+                <button id="addNewPlayer" type="submit" class="form-control btn btn-outline-success">+ Add Player</button>
             </div>
         </div>
     </div>
@@ -87,6 +85,7 @@
         </div>-->
 
 </div>
-
-<button id="submitTeam" type="submit" class="btn btn-success col-sm-12">Submit Team</button>
+<div class="row">
+    <button id="submitTeam" type="submit" class="btn btn-success col-sm-12">Submit Team</button>
+</div>
             

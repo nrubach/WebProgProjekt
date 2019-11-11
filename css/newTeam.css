@@ -3,10 +3,18 @@
 }
 
 #players {
-    margin-top: 1em;
     margin-bottom: 1em;
 }
 
 #teamName {
     font-size: 2em;
+}
+
+.playercard .row {
+    margin-top: 7px;
+    margin-bottom: 7xpx;
+}
+
+.teamelements {
+    margin-bottom: 1em;
 }
