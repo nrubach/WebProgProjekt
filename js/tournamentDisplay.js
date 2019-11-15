@@ -38,7 +38,6 @@ class PageTournamentDisplay {
         game_spacer.classList.add("game", "game-spacer");
         spacer.classList.add("spacer");
         spacer.innerHTML = "&nbsp;";
-        game_spacer.innerHTML = "&nbsp;";
         team_1.innerHTML = "&nbsp;";
         team_2.innerHTML = "&nbsp;";
         let next_round_matches = document.querySelectorAll(".round.round-" + next_round);
@@ -54,9 +53,29 @@ class PageTournamentDisplay {
               document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
             }
           }
+          else{
+            team_2.classList.remove("winner");
+            team_1.classList.add("winner");
+            if(current_game % 2 == 0){
+              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+            }
+            if(current_game % 2 == 1){
+              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+            }
+          }
         }
         team_2.onclick = function(){
           if(!team_1.classList.contains("winner")){
+            team_2.classList.add("winner");
+            if(current_game % 2 == 0){
+              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+            }
+            if(current_game % 2 == 1){
+              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+            }
+          }
+          else{
+            team_1.classList.remove("winner");
             team_2.classList.add("winner");
             if(current_game % 2 == 0){
               document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_2.innerHTML;
