@@ -15,27 +15,91 @@ class PageTournamentDisplay {
       this.currentTournament = snapshot.val(); //Write databse snapshot in _tournaments object
     });
     document.getElementById("tournamentTitle").innerHTML = this.currentTournament.name;
-    let matches = this.currentTournament.matches;
-    console.log("Matches.length = " + Object.keys(matches).length);
-    let rounds = Math.log(Object.keys(matches).length) / Math.log(2);
-    console.log("rounds = " + rounds);
-    //this.showMatch(matches["0"]).appendTo("#tournament");
-    for(let i = 0; i <= rounds; i++){
-      let round = document.createElement("ul");
-      round.classList.add("round","round-" + i);
-      round.innerHTML = '<li class="spacer"></li>';
-      Object.keys(matches).forEach((element) => {
-        round.innerHTML += (this.showMatch(matches[element]));
-      });
-      $("#tournament").append(round);
+    let teams = this.currentTournament.teams;
+    let teams_count = teams.length;
+    let rounds = Math.log(teams_count)/Math.log(2);
+    let matches_count = teams_count - 1;
+    for(let round_number = 1; round_number <= rounds; round_number++){
+      let next_round = round_number + 1;
+      let round_html = document.createElement("ul");
+      round_html.classList.add("round", "round-" + round_number);
+      let spacer = document.createElement("li");
+      spacer.classList.add("spacer");
+      spacer.innerHTML = "&nbsp;";
+      round_html.appendChild(spacer);
+      let game_number = 0;
+      for(let i = 0; i < teams_count; i+=2){
+        let team_1 = document.createElement("li");
+        let team_2 = document.createElement("li");
+        let game_spacer = document.createElement("li");
+        let spacer = document.createElement("li");
+        team_1.classList.add("game", "game-top", "game-" + game_number);
+        team_2.classList.add("game", "game-bottom", "game-" + game_number);
+        game_spacer.classList.add("game", "game-spacer");
+        spacer.classList.add("spacer");
+        spacer.innerHTML = "&nbsp;";
+        team_1.innerHTML = "&nbsp;";
+        team_2.innerHTML = "&nbsp;";
+        let next_round_matches = document.querySelectorAll(".round.round-" + next_round);
+        let corresponding_game = Math.floor(game_number/2);
+        let current_game = game_number;
+        team_1.onclick = function(){
+          if(!team_2.classList.contains("winner")){
+            team_1.classList.add("winner");
+            if(current_game % 2 == 0){
+              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+            }
+            if(current_game % 2 == 1){
+              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+            }
+          }
+          else{
+            team_2.classList.remove("winner");
+            team_1.classList.add("winner");
+            if(current_game % 2 == 0){
+              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+            }
+            if(current_game % 2 == 1){
+              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+            }
+          }
+        }
+        team_2.onclick = function(){
+          if(!team_1.classList.contains("winner")){
+            team_2.classList.add("winner");
+            if(current_game % 2 == 0){
+              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+            }
+            if(current_game % 2 == 1){
+              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+            }
+          }
+          else{
+            team_1.classList.remove("winner");
+            team_2.classList.add("winner");
+            if(current_game % 2 == 0){
+              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+            }
+            if(current_game % 2 == 1){
+              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+            }
+          }
+        }
+        round_html.appendChild(team_1);
+        round_html.appendChild(game_spacer);
+        round_html.appendChild(team_2);
+        round_html.appendChild(spacer);
+        game_number++;
+      }
+      $("#tournament").append(round_html);
+      matches_count -= teams_count;
+      teams_count /= 2;
     }
-  }
-
-  showMatch(match) {
-    let html = '<li class="game game-top">' + match.team_1 + '<span></span></li>' +
-    '<li class="game game-spacer">&nbsp;</li>' +
-    '<li class="game game-bottom">' + match.team_2 + '<span></span></li>' +
-    '<li class="spacer"></li>';
-    return html;
+    for(let i = 0; i < document.querySelectorAll(".round-1 .game-top").length; i++){
+      document.querySelectorAll(".round-1 .game-top")[i].innerHTML = teams[i*2];
+    }
+    for(let i = 0; i < document.querySelectorAll(".round-1 .game-bottom").length; i++){
+      document.querySelectorAll(".round-1 .game-bottom")[i].innerHTML = teams[i*2+1];
+    }
   }
 }
