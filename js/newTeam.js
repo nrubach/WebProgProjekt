@@ -1,6 +1,5 @@
 let newTeamContext;
 
-
 class PageNewTeam {
 
   playerObjects;

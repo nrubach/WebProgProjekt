@@ -1,0 +1,44 @@
+<div id="alertBox" class="alert alert-danger" role="alert">
+    <span id="faultyElement"></span> is not valid. Please try again.
+</div>
+<div class="row">
+    <h1>Tournament details<br></h1>
+</div>
+<div class="row">
+    <h3>Name:<br></h3>
+    <input id="tournamentName" type="text" class="form-control" placeholder="Enter the tournament name here...">
+</div>
+<div class="row">
+    <h3>Logo:<br></h3>
+</div>
+<div class="row">
+    <input name="bild" type="file" id="inputfile" class="erstellen_input">
+</div>
+<div id="preview">
+    <img id="thumbnail" src="" onerror="this.style.display='none'" class="col-lg-6 col-md-12">
+</div>
+<div class="row">
+    <h3>Gamesystem:</h3>
+</div>
+<div class="row">
+    <select class="form-control" name="gamesystem" id="gamesystemSelector">
+        <option value="ko">K.O. System</option>
+        <option disabled title="Coming soon!" value="gruppen">Gruppenspielsystem</option>
+        <option disabled title="Coming soon!" value="liga">Liga-System</option>
+    </select>
+</div>
+<div class="row">
+    <h3>Teams:<br></h3>
+</div>
+<div class="row">
+    <select class="form-control" name="team" id="teamSelector">
+        <option selected>Teams auswählen...</option>
+    </select>
+</div>
+<div class="row">
+    <ul id="teamList" class="list-group col-md-12">
+    </ul>
+</div>
+<div class="row">
+    <button id="submitTournament" type="submit" class="btn btn-success col-sm-12">Submit Team</button>
+</div>
