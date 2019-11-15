@@ -15,27 +15,40 @@ class PageTournamentDisplay {
       this.currentTournament = snapshot.val(); //Write databse snapshot in _tournaments object
     });
     document.getElementById("tournamentTitle").innerHTML = this.currentTournament.name;
-    let matches = this.currentTournament.matches;
-    console.log("Matches.length = " + Object.keys(matches).length);
-    let rounds = Math.log(Object.keys(matches).length) / Math.log(2);
-    console.log("rounds = " + rounds);
-    //this.showMatch(matches["0"]).appendTo("#tournament");
-    for(let i = 0; i <= rounds; i++){
-      let round = document.createElement("ul");
-      round.classList.add("round","round-" + i);
-      round.innerHTML = '<li class="spacer"></li>';
-      Object.keys(matches).forEach((element) => {
-        round.innerHTML += (this.showMatch(matches[element]));
-      });
-      $("#tournament").append(round);
-    }
-  }
-
-  showMatch(match) {
-    let html = '<li class="game game-top">' + match.team_1 + '<span></span></li>' +
-    '<li class="game game-spacer">&nbsp;</li>' +
-    '<li class="game game-bottom">' + match.team_2 + '<span></span></li>' +
-    '<li class="spacer"></li>';
-    return html;
+    let tournament = this.currentTournament.tournament;
+    console.log("Matches.length = " + Object.keys(tournament.round_0).length);
+    let round1 = document.createElement("ul");
+    let round_data = tournament.round_0;
+    round1.classList.add("round","round-0");
+    let spacer = document.createElement("li");
+    spacer.classList.add("spacer");
+    spacer.innerHTML = "&nbsp;";
+    round1.appendChild(spacer);
+    Object.keys(round_data).forEach((element) => {
+      let match = round_data[element];
+      let team_1 = document.createElement("li");
+      let team_2 = document.createElement("li");
+      let game_spacer = document.createElement("li");
+      let spacer = document.createElement("li");
+      team_1.classList.add("game", "game-top");
+      team_2.classList.add("game", "game-bottom");
+      game_spacer.classList.add("game", "game-spacer");
+      spacer.classList.add("spacer");
+      spacer.innerHTML = "&nbsp;";
+      game_spacer.innerHTML = "&nbsp;";
+      team_1.innerHTML = match.team_1;
+      team_2.innerHTML = match.team_2;
+      if(match.winner == 1){
+        team_1.classList.add("winner");
+      }
+      if(match.winner == 2){
+        team_2.classList.add("winner");
+      }
+      round1.appendChild(team_1);
+      round1.appendChild(game_spacer);
+      round1.appendChild(team_2);
+      round1.appendChild(spacer);
+    });
+    $("#tournament").append(round1);
   }
 }
