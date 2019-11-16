@@ -9,6 +9,18 @@
     <input id="tournamentName" type="text" class="form-control" placeholder="Enter the tournament name here...">
 </div>
 <div class="row">
+        <h3>Organizer:<br></h3>
+        <input id="organizerName" type="text" class="form-control" placeholder="Enter the organizers name here...">
+    </div>
+<div class="row">
+    <h3>Start date:</h3>
+    <input id="startdatepicker" type="date">
+</div>
+<div class="row">
+    <h3>End date:</h3>
+    <input id="enddatepicker" type="date">
+</div>
+<div class="row">
     <h3>Logo:<br></h3>
 </div>
 <div class="row">
@@ -32,7 +44,7 @@
 </div>
 <div class="row">
     <select class="form-control" name="team" id="teamSelector">
-        <option selected>Teams auswählen...</option>
+        <option value="selector" selected>Teams hinzufügen...</option>
     </select>
 </div>
 <div class="row">
@@ -40,5 +52,5 @@
     </ul>
 </div>
 <div class="row">
-    <button id="submitTournament" type="submit" class="btn btn-success col-sm-12">Submit Team</button>
+    <button id="submitTournament" type="submit" class="btn btn-success col-sm-12">Submit Tournament</button>
 </div>

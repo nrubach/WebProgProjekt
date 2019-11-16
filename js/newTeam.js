@@ -7,7 +7,9 @@ class PageNewTeam {
 
   constructor(app) {
     this._app = app;
+    // newTeamContext should always point to the class object which 'this' often doesnt do
     newTeamContext = this;
+    // Create empty playerObjects array for later use
     this.playerObjects = new Array();
   }
 
@@ -97,14 +99,11 @@ class PageNewTeam {
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else {
-      let numberOfPlayers = 0;
       let avgSr = 0;
       newTeamContext.playerObjects.forEach(player => {
-        numberOfPlayers++;
-        console.log(player.sr);
         avgSr += parseInt(player.sr, 10);
       });
-      avgSr = avgSr / numberOfPlayers;
+      avgSr = avgSr / newTeamContext.playerObjects.length;
       let teamref = database.ref('teams/').push({
         avgRating: Math.round(avgSr),
         name: $("#teamName").val()
@@ -130,6 +129,7 @@ class PageNewTeam {
       });
       console.log("Written to database");
       await newTeamContext._app._instances["/teams"].updateTeams();
+      await newTeamContext._app._instances["/tournaments/new"].updateTeams();
       location.hash = "/teams";
     }
   }
