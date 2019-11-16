@@ -3,7 +3,9 @@ let newTournamentContext;
 class PageNewTournament {
   constructor(app) {
     this._app = app;
+    // newTournamentContext should always point to the class object which 'this' often doesnt do
     newTournamentContext = this;
+    // Create empty participatingTeams and allTeams array for later use
     this.participatingTeams = new Array();
     this.allTeams = new Array();
   }
@@ -16,12 +18,14 @@ class PageNewTournament {
     }
     this._app.setPageContent(htmlContent);
 
+    // hide the alertbox from the start
     $("#alertBox").hide();
     
     await this.loadTeamsToSelect();
 
+    // add onclick listener to button
     $("#submitTournament").on("click", this.submitTournament);
-
+    // add onchange listener to the dropdown
     $("#teamSelector").change(() => {
       if($("#teamSelector").val() != "selector") {
         let elementOfKey;
@@ -31,11 +35,15 @@ class PageNewTournament {
           }
         });
         newTournamentContext.participatingTeams.push(elementOfKey);
-        let deleteButton = "<button onclick='newTournamentContext.deleteTeamWithKey(\"" + elementOfKey.key + "\")'>Delete</button>";
+        let deleteButton = "<button class='btn btn-outline-danger' onclick='newTournamentContext.deleteTeamWithKey(\"" + elementOfKey.key + "\")'>Delete</button>";
         $("#teamList").append("<li id='" + elementOfKey.key + "' class='list-group-item'>" + elementOfKey.name + " - " + elementOfKey.sr + " SR average" + deleteButton + "</li>");
         $("#teamSelector option[value|='" + elementOfKey.key + "']").attr("disabled", "");
         $("#teamSelector").val("selector");
       }
+    });
+    // Setup the image input listener
+    $("#inputfile").change(function(){
+      newTeamContext.readImage(this);
     });
   }
 
@@ -43,11 +51,13 @@ class PageNewTournament {
     console.log("Deleting team with key " + key);
     newTournamentContext.participatingTeams.forEach(team => {
       if (team.key == key) {
+        // remove team with the key from participatingTeams array and reverts all things done when adding the team
         newTournamentContext.participatingTeams.splice(newTournamentContext.participatingTeams.findIndex(team => team.key === key), 1);
         $("#teamSelector option[value|='" + team.key + "']").removeAttr("disabled");
         $("#" + key).remove();
       }
     });
+    // reset dropdown to show the default dropdown item
     $("#teamSelector").val("selector");
   }
 
@@ -60,16 +70,19 @@ class PageNewTournament {
   }
 
   async loadTeamsToSelect() {
+    // get all teams from database
     if(this._teams == null) {
       await database.ref('/teams/').once('value').then((snapshot) => {
         this._teams = snapshot.val(); // Get /teams/ Object from database
       });
     }
 
+    // adds all the teams to the dropdown as options
     let number = 0;
     Object.keys(this._teams).forEach((id) => {
       let item = this._teams[id]; // Get value for current key out of database snapshot
       $("#teamSelector").append('<option value="' + item.id + '">' + item.name + ' - ' + item.avgRating + ' SR average</option>');
+      // add all teams to the allTeams array
       newTournamentContext.allTeams.push({
         key: item.id,
         name: item.name,
@@ -81,12 +94,14 @@ class PageNewTournament {
 
   async submitTournament() {
     let teamAmount = newTournamentContext.participatingTeams.length;
-    console.log(teamAmount);
+    // shows alertBox when tournament or organizer name is not filled
     if ($("#tournamentName").val() == "" || $("#organizerName").val() == "") {
       $("#alertBox").html("The tournament and organizer names need to be filled.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
-    } else if (teamAmount != 2 && teamAmount != 4 && teamAmount != 8 && teamAmount != 16 && teamAmount != 32) {
+    } 
+    // shows alertBox when the tournament doesnt have 2,4,8,16 or 32 
+    else if (teamAmount != 2 && teamAmount != 4 && teamAmount != 8 && teamAmount != 16 && teamAmount != 32) {
       $("#alertBox").html("You can only create Tournaments with 2, 4, 8, 16 or 32 Teams.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
@@ -135,14 +150,11 @@ class PageNewTournament {
           $('#thumbnail').attr('src', e.target.result);
           let width = i.width;
           let height = i.height;
-          console.log(width);
-          console.log(height);
-          console.log(width/height);
           let ratioCheck = (width/height == 16/9);
           if(ratioCheck) {
             newTeamContext.imageData = e.target.result;
           } else {
-            $("#faultyElement").html("Image ratio has to be 16:9. Current image");
+            $("#alertBox").html("Image ratio has to be 16:9. Current image");
             $("#alertBox").show();
             setTimeout(function() { $("#alertBox").hide(); }, 10000);
             $('#thumbnail').attr('src', '');
