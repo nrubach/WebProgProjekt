@@ -7,7 +7,9 @@ class PageNewTeam {
 
   constructor(app) {
     this._app = app;
+    // newTeamContext should always point to the class object which 'this' often doesnt do
     newTeamContext = this;
+    // Create empty playerObjects array for later use
     this.playerObjects = new Array();
   }
 
@@ -33,12 +35,12 @@ class PageNewTeam {
   submitPlayer() {
     if ($("#newPlayerName").val().length < 2) {
       $("#alertBox").show();
-      $("#faultyElement").html("Gamertag");
+      $("#alertBox").html("The Gamertag needs to be at least 2 characters long.");
       return;
     }
     if ($("#newPlayerSR").val() < 0 || $("#newPlayerSR").val() > 5000) {
       $("#alertBox").show();
-      $("#faultyElement").html("Skill Rating");
+      $("#alertBox").html("Skill Rating needs to be between 0 and 5000.");
       return;
     }
 
@@ -89,22 +91,19 @@ class PageNewTeam {
 
   async submitTeam() {
     if ($("#teamName").val() == "") {
-      $("#faultyElement").html("Team name");
+      $("#alertBox").html("Team name needs to be filled.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else if (newTeamContext.playerObjects.length < 6) {
-      $("#faultyElement").html("The number of players");
+      $("#alertBox").html("A team needs to have at least 6 players. Please add some players.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else {
-      let numberOfPlayers = 0;
       let avgSr = 0;
       newTeamContext.playerObjects.forEach(player => {
-        numberOfPlayers++;
-        console.log(player.sr);
         avgSr += parseInt(player.sr, 10);
       });
-      avgSr = avgSr / numberOfPlayers;
+      avgSr = avgSr / newTeamContext.playerObjects.length;
       let teamref = database.ref('teams/').push({
         avgRating: Math.round(avgSr),
         name: $("#teamName").val()
@@ -130,6 +129,7 @@ class PageNewTeam {
       });
       console.log("Written to database");
       await newTeamContext._app._instances["/teams"].updateTeams();
+      await newTeamContext._app._instances["/tournaments/new"].updateTeams();
       location.hash = "/teams";
     }
   }
@@ -151,7 +151,7 @@ class PageNewTeam {
           if(ratioCheck) {
             newTeamContext.imageData = e.target.result;
           } else {
-            $("#faultyElement").html("Image ratio has to be 16:9. Current image");
+            $("#alertBox").html("Image ratio has to be 16:9.");
             $("#alertBox").show();
             setTimeout(function() { $("#alertBox").hide(); }, 10000);
             $('#thumbnail').attr('src', '');
