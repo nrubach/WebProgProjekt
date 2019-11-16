@@ -5,3 +5,25 @@
 <main id="tournament">
 </main>
 <div><p>Einfach auf das Team klicken, das gewonnen hat.</p></div>
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Turnier zurücksetzen</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Turnier löschen</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Sind Sie sicher, dass Sie dieses Turnier zurücksetzen möchten? Es kann nicht wiederhergestellt werden!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nein</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="resetTournament">Ja</button>
+      </div>
+    </div>
+  </div>
+</div>
