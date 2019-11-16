@@ -46,6 +46,10 @@ li.game-top {
   border-bottom: 1px solid #aaa;
 }
 
+li.game-top.winner {
+  border-bottom: 3px solid rgb(14, 71, 138);
+}
+
 li.game-spacer {
   border-right: 1px solid #aaa;
   min-height: 40px;
@@ -53,6 +57,10 @@ li.game-spacer {
 
 li.game-bottom {
   border-top: 1px solid #aaa;
+}
+
+li.game-bottom.winner {
+  border-top: 3px solid rgb(14, 71, 138);
 }
 
 li.game_spacer {

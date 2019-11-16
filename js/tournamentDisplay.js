@@ -45,43 +45,61 @@ class PageTournamentDisplay {
         let current_game = game_number;
         team_1.onclick = function(){
           if(!team_2.classList.contains("winner")){
-            team_1.classList.add("winner");
-            if(current_game % 2 == 0){
-              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+            if(document.querySelector(".round-" + round_number + " .game-bottom.game-" + current_game).innerHTML != "&nbsp;"){
+              team_1.classList.add("winner");
+              if(document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game)){
+                if(current_game % 2 == 0){
+                  document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+                }
+                if(current_game % 2 == 1){
+                  document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+                }
+              }
             }
-            if(current_game % 2 == 1){
-              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+            else{
+              alert("Das Team hat keinen Gegner.");
             }
           }
-          else{
+          if(team_2.classList.contains("winner")){
             team_2.classList.remove("winner");
             team_1.classList.add("winner");
-            if(current_game % 2 == 0){
-              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_1.innerHTML;
-            }
-            if(current_game % 2 == 1){
-              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+            if(document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game)){
+              if(current_game % 2 == 0){
+                document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+              }
+              if(current_game % 2 == 1){
+                document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
+              }
             }
           }
         }
         team_2.onclick = function(){
           if(!team_1.classList.contains("winner")){
-            team_2.classList.add("winner");
-            if(current_game % 2 == 0){
-              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+            if(document.querySelector(".round-" + round_number + " .game-top.game-" + current_game).innerHTML != "&nbsp;"){
+              team_2.classList.add("winner");
+              if(document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game)){
+                if(current_game % 2 == 0){
+                  document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+                }
+                if(current_game % 2 == 1){
+                  document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+                }
+              }
             }
-            if(current_game % 2 == 1){
-              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+            else{
+              alert("Das Team hat keinen Gegner.");
             }
           }
           else{
             team_1.classList.remove("winner");
             team_2.classList.add("winner");
-            if(current_game % 2 == 0){
-              document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_2.innerHTML;
-            }
-            if(current_game % 2 == 1){
-              document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+            if(document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game)){
+              if(current_game % 2 == 0){
+                document.querySelector(".round-" + next_round + " .game-top.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+              }
+              if(current_game % 2 == 1){
+                document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_2.innerHTML;
+              }
             }
           }
         }
