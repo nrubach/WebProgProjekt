@@ -150,17 +150,42 @@ class PageTournamentDisplay {
     for(let i = 0; i < document.querySelectorAll(".round-1 .game-bottom").length; i++){
       document.querySelectorAll(".round-1 .game-bottom")[i].innerHTML = teams[i*2+1];
     }
-    database.ref('/tournaments/'
-                    + urlParams.get('key')
-                    + "/matches/3").once("value").then((snapshot) => {
-                      if(snapshot.exists()){
-                        console.log("häää");
-                      }
-                      else{
-                        console.log("yeehaw");
+    await database.ref('/tournaments/'
+                + urlParams.get('key')
+                + "/matches/").once("value").then((snapshot) => {
+                  if(snapshot.exists()){
+                    let results = snapshot.val();
+                    for(let i = 1; i < results.length; i++){
+                      for(let j = 0; j < results[i].length; j++){
+                        if(results[i][j].winner == 1){
+                          document.querySelector(".round-" + i + " .game-top.game-" + j).classList.add("winner");
+                          let next_round = i + 1;
+                          if(document.querySelector(".round-" + next_round + " .game-top.game-" + Math.floor(j/2))){
+                            if(j % 2 == 0){
+                              document.querySelector(".round-" + next_round + " .game-top.game-" + Math.floor(j/2)).innerHTML = document.querySelector(".round-" + i + " .game-top.game-" + j).innerHTML;
+                            }
+                            if(j % 2 == 1){
+                              document.querySelector(".round-" + next_round + " .game-bottom.game-" + Math.floor(j/2)).innerHTML = document.querySelector(".round-" + i + " .game-top.game-" + j).innerHTML;
+                            }
+                          }
+                        }
+                        if(results[i][j].winner == 2){
+                          document.querySelector(".round-" + i + " .game-bottom.game-" + j).classList.add("winner");
+                          let next_round = i + 1;
+                          if(document.querySelector(".round-" + next_round + " .game-top.game-" + Math.floor(j/2))){
+                            if(j % 2 == 0){
+                              document.querySelector(".round-" + next_round + " .game-top.game-" + Math.floor(j/2)).innerHTML = document.querySelector(".round-" + i + " .game-bottom.game-" + j).innerHTML;
+                            }
+                            if(j % 2 == 1){
+                              document.querySelector(".round-" + next_round + " .game-bottom.game-" + Math.floor(j/2)).innerHTML = document.querySelector(".round-" + i + " .game-bottom.game-" + j).innerHTML;
+                            }
+                          }
+                        }
                       }
                     }
-                  );
+                  }
+                }
+    );
   }
 
   format(date) {
