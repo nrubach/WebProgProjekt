@@ -35,12 +35,12 @@ class PageNewTeam {
   submitPlayer() {
     if ($("#newPlayerName").val().length < 2) {
       $("#alertBox").show();
-      $("#faultyElement").html("Gamertag");
+      $("#alertBox").html("The Gamertag needs to be at least 2 characters long.");
       return;
     }
     if ($("#newPlayerSR").val() < 0 || $("#newPlayerSR").val() > 5000) {
       $("#alertBox").show();
-      $("#faultyElement").html("Skill Rating");
+      $("#alertBox").html("Skill Rating needs to be between 0 and 5000.");
       return;
     }
 
@@ -91,11 +91,11 @@ class PageNewTeam {
 
   async submitTeam() {
     if ($("#teamName").val() == "") {
-      $("#faultyElement").html("Team name");
+      $("#alertBox").html("Team name needs to be filled.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else if (newTeamContext.playerObjects.length < 6) {
-      $("#faultyElement").html("The number of players");
+      $("#alertBox").html("A team needs to have at least 6 players. Please add some players.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else {
@@ -151,7 +151,7 @@ class PageNewTeam {
           if(ratioCheck) {
             newTeamContext.imageData = e.target.result;
           } else {
-            $("#faultyElement").html("Image ratio has to be 16:9. Current image");
+            $("#alertBox").html("Image ratio has to be 16:9.");
             $("#alertBox").show();
             setTimeout(function() { $("#alertBox").hide(); }, 10000);
             $('#thumbnail').attr('src', '');

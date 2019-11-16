@@ -83,15 +83,15 @@ class PageNewTournament {
     let teamAmount = newTournamentContext.participatingTeams.length;
     console.log(teamAmount);
     if ($("#tournamentName").val() == "" || $("#organizerName").val() == "") {
-      $("#faultyElement").html("The tournament and organizer names need to be filled.");
+      $("#alertBox").html("The tournament and organizer names need to be filled.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else if (teamAmount != 2 && teamAmount != 4 && teamAmount != 8 && teamAmount != 16 && teamAmount != 32) {
-      $("#faultyElement").html("You can only create Tournaments with 2, 4, 8, 16 or 32 Teams.");
+      $("#alertBox").html("You can only create Tournaments with 2, 4, 8, 16 or 32 Teams.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else if ($("#startdatepicker").val() == "" || $("#enddatepicker").val() == "" || Date.parse($("#startdatepicker").val()) > Date.parse($("#enddatepicker").val()) ) {
-      $("#faultyElement").html("You need to set the start and end dates. Be sure the start date is prior to the end date.");
+      $("#alertBox").html("You need to set the start and end dates. Make sure the start date is prior to the end date.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else {
