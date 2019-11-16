@@ -4,6 +4,10 @@ div#accordion button.btn.btn-link {
   font-family: "Lucida Grande";
 }
 
+.card-body {
+  background-color: rgb(175, 216, 255);
+}
+
 div#twitch {
   position:relative;
   padding-top:56.25%;
