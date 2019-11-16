@@ -163,13 +163,6 @@ class PageTournamentDisplay {
       teams_count /= 2;
     }
     //fill first round of tournament with database data
-    /*for(let i = 0; i < document.querySelectorAll(".round-1 .game-top").length; i++){
-      console.log()
-      document.querySelectorAll(".round-1 .game-top")[i].innerHTML = teams[i*2].name;
-    }
-    for(let i = 0; i < document.querySelectorAll(".round-1 .game-bottom").length; i++){
-      document.querySelectorAll(".round-1 .game-bottom")[i].innerHTML = teams[i*2+1].name;
-    }*/
     let i = 0;
     Object.keys(teams).forEach((key) => {
       document.querySelectorAll(".round-1 .game-top, .round-1 .game-bottom")[i].innerHTML = teams[key].name;
