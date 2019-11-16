@@ -77,7 +77,7 @@ class PageNewTeam {
           '</div>' +
           '<div class="row">' +
               '<div class="col-lg">' +
-                  '<span>Captain? </span>' +
+                  '<span>Kapitän? </span>' +
               '</div>' +
               '<div class="col-lg">' +
                   '<b>' + $("#newPlayerCaptain").val() + '</b>' +
@@ -89,17 +89,17 @@ class PageNewTeam {
     // reset newPlayer Card
     $("#newPlayerName").val("")
     $("#newPlayerSR").val("")
-    $("#newPlayerCaptain").val("No")
+    $("#newPlayerCaptain").val("Nein")
   }
 
   async submitTeam() {
-    // Only write team to database if teamname is filled and there are at least 6 players in the team 
+    // Only write team to database if teamname is filled and there are at least 6 players in the team
     if ($("#teamName").val() == "") {
-      $("#alertBox").html("Team name needs to be filled.");
+      $("#alertBox").html("Teamname darf nicht leer sein.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else if (newTeamContext.playerObjects.length < 6) {
-      $("#alertBox").html("A team needs to have at least 6 players. Please add some players.");
+      $("#alertBox").html("Das Team muss mindestens sechs Spieler enthalten.");
       $("#alertBox").show();
       setTimeout(function() { $("#alertBox").hide(); }, 5000);
     } else {
@@ -114,7 +114,7 @@ class PageNewTeam {
         avgRating: Math.round(avgSr),
         name: $("#teamName").val()
       });
-      // Add the key as id to the team 
+      // Add the key as id to the team
       database.ref('teams/' + teamref.key).update({
         id: teamref.key
       });
@@ -136,7 +136,7 @@ class PageNewTeam {
           captain: player.captain
         });
       });
-      console.log("Written to database");
+      //console.log("Written to database");
       // reload teams in teams page
       await newTeamContext._app._instances["/teams"].updateTeams();
       // reload teams in tournaments creation
@@ -163,7 +163,7 @@ class PageNewTeam {
           if(ratioCheck) {
             newTeamContext.imageData = e.target.result;
           } else {
-            $("#alertBox").html("Image ratio has to be 16:9.");
+            $("#alertBox").html("Das Bildverhältnis muss 16:9 sein.");
             $("#alertBox").show();
             setTimeout(function() { $("#alertBox").hide(); }, 10000);
             $('#thumbnail').attr('src', '');
