@@ -9,29 +9,42 @@ class PageTournamentDisplay {
     if (html.ok) {
       htmlContent = await html.text();
     }
+    //add corresponding page content to page
     this._app.setPageContent(htmlContent);
+    //retrieve urlParams from URL
     let urlParams = new URLSearchParams(window.location.search);
     await database.ref('/tournaments/' + urlParams.get('key')).once('value').then((snapshot) => {
-      this.currentTournament = snapshot.val(); //Write databse snapshot in _tournaments object
+      this.currentTournament = snapshot.val(); //Write database snapshot in _tournaments object
     });
+    //write corresponding database contents to equivalent HTML elements
     document.getElementById("tournamentTitle").innerHTML = this.currentTournament.name;
     document.getElementById("tournamentOrganizer").innerHTML = "<i>Organisator: " + this.currentTournament.organizer + "</i>";
     document.getElementById("startdate").innerHTML = "Beginn: " + this.format(new Date(this.currentTournament.startdate));
     document.getElementById("enddate").innerHTML = "Ende: " + this.format(new Date(this.currentTournament.enddate));
-    let teams = this.currentTournament.teams;
-    let teams_count = teams.length;
+    //Write teams object to variable for easier access
+    let teams = await this.currentTournament.teams;
+    //calculate # of teams, # of rounds and # of matches
+    let teams_count = 0;
+    for(let obj in teams){
+      teams_count++;
+    }
     let rounds = Math.log(teams_count)/Math.log(2);
     let matches_count = teams_count - 1;
+    //loops until all rounds have been created
     for(let round_number = 1; round_number <= rounds; round_number++){
       let next_round = round_number + 1;
+      //creates round element that is stylized in css to create tournament tree structure
       let round_html = document.createElement("ul");
       round_html.classList.add("round", "round-" + round_number);
+      //spacers are needed to give everything proper space
       let spacer = document.createElement("li");
       spacer.classList.add("spacer");
       spacer.innerHTML = "&nbsp;";
       round_html.appendChild(spacer);
       let game_number = 0;
+      //loops until all spaces for all matches are filled (# of spaces = #matches * 2)
       for(let i = 0; i < teams_count; i+=2){
+        //create HTML list element for round lists to fill
         let team_1 = document.createElement("li");
         let team_2 = document.createElement("li");
         let game_spacer = document.createElement("li");
@@ -43,10 +56,12 @@ class PageTournamentDisplay {
         spacer.innerHTML = "&nbsp;";
         team_1.innerHTML = "&nbsp;";
         team_2.innerHTML = "&nbsp;";
-        let next_round_matches = document.querySelectorAll(".round.round-" + next_round);
+        //corresponding_game is the game in the next round, i.E. Matches 1 & 2 in Round 1 fight for spots in Match 1 in Round 2
         let corresponding_game = Math.floor(game_number/2);
         let current_game = game_number;
+        //every team list elements gets an onclick function to move them up the tournament and to save the results in the dataase
         team_1.onclick = function(){
+          //If no winner has been determined yet and if the opponent is not empty (required for games in the later rounds), it will be marked as the winner.
           if(!team_2.classList.contains("winner")){
             if(document.querySelector(".round-" + round_number + " .game-bottom.game-" + current_game).innerHTML != "&nbsp;"){
               team_1.classList.add("winner");
@@ -70,6 +85,7 @@ class PageTournamentDisplay {
               alert("Das Team hat keinen Gegner.");
             }
           }
+          //If the other team has been marked as the winner, it will be stripped of the winner class, then the clicked element will be marked as the winner.
           if(team_2.classList.contains("winner")){
             team_2.classList.remove("winner");
             team_1.classList.add("winner");
@@ -90,6 +106,7 @@ class PageTournamentDisplay {
             });
           }
         }
+        //See above, just with the bottom team.
         team_2.onclick = function(){
           if(!team_1.classList.contains("winner")){
             if(document.querySelector(".round-" + round_number + " .game-top.game-" + current_game).innerHTML != "&nbsp;"){
@@ -134,6 +151,7 @@ class PageTournamentDisplay {
             });
           }
         }
+        //add HTML elements to the round unsorted list element
         round_html.appendChild(team_1);
         round_html.appendChild(game_spacer);
         round_html.appendChild(team_2);
@@ -144,12 +162,20 @@ class PageTournamentDisplay {
       matches_count -= teams_count;
       teams_count /= 2;
     }
-    for(let i = 0; i < document.querySelectorAll(".round-1 .game-top").length; i++){
-      document.querySelectorAll(".round-1 .game-top")[i].innerHTML = teams[i*2];
+    //fill first round of tournament with database data
+    /*for(let i = 0; i < document.querySelectorAll(".round-1 .game-top").length; i++){
+      console.log()
+      document.querySelectorAll(".round-1 .game-top")[i].innerHTML = teams[i*2].name;
     }
     for(let i = 0; i < document.querySelectorAll(".round-1 .game-bottom").length; i++){
-      document.querySelectorAll(".round-1 .game-bottom")[i].innerHTML = teams[i*2+1];
-    }
+      document.querySelectorAll(".round-1 .game-bottom")[i].innerHTML = teams[i*2+1].name;
+    }*/
+    let i = 0;
+    Object.keys(teams).forEach((key) => {
+      document.querySelectorAll(".round-1 .game-top, .round-1 .game-bottom")[i].innerHTML = teams[key].name;
+      i++;
+    });
+    //retrieve match results and apply them to the tournament if they exist
     await database.ref('/tournaments/'
                 + urlParams.get('key')
                 + "/matches/").once("value").then((snapshot) => {
@@ -186,8 +212,17 @@ class PageTournamentDisplay {
                   }
                 }
     );
+    //tournament reset button functionality
+    $('#resetTournament').on('click', function(event) {
+      event.preventDefault();
+      console.log("Success!");
+      database.ref('/tournaments/' + urlParams.get('key')).update({
+        matches: null
+      });
+      location.reload();
+    });
   }
-
+  //format date method
   format(date) {
     var d = date.getDate();
     var m = date.getMonth() + 1;
