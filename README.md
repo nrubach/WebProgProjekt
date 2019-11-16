@@ -5,9 +5,12 @@ Abschlussprojekt für die Vorlesung Webprogrammierung 2019 - Nico Rubach, Freder
 Das Ziel des Projekts besteht darin, ein Organisationstool für Turniere zu erstellen. Hierbei liegt das Hauptaugenmerk auf der eSports-Szene.
 
 ## Installation
-Benötigt node.js.
+Benötigt node.js und npm.
 
-Nachdem das Package heruntergeladen und entpackt wurde, kann über das Terminal oder die Kommandozeile zum Ordner navigiert werden. Im Packageroot angelangt kann der Node-Server über den Befehl `node server.js` gestartet werden. Die Website kann nun im Browser über [localhost:8080](http://localhost:8080/) aufgerufen werden.
+Zuerst müssen die beiden Pakete serve-static und connect intalliert werden:
+`npm install serve-static`
+`npm install connect`
+Nun kann über das Terminal oder die Kommandozeile zum Ordner navigiert werden. Im Packageroot angelangt kann der Node-Server über den Befehl `node server.js` gestartet werden. Die Website kann nun im Browser über [localhost:8080](http://localhost:8080/) aufgerufen werden.
 
 ## Anwendung
 Sobald die Website aufgerufen wurde, kann wie gewohnt mit Klicks navigiert werden.

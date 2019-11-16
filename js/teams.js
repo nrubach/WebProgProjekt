@@ -121,12 +121,16 @@ class PageTeams {
         teamName.setAttribute("hidden", ""); //Hide Team name
         teamLogo.classList.remove("dark"); //Brighten image
         col.classList.remove("flip"); //Unflip card when mouse leaves card --> Only one card can be flipped at once
+        back.classList.remove("onTop");
+        col.classList.remove("onTop");
       });
 
       //Same for touch device
       col.addEventListener("touchend", () => {
         teamName.setAttribute("hidden", "");
         teamLogo.classList.remove("dark");
+        back.classList.remove("onTop");
+        col.classList.remove("onTop");
       });
 
 
