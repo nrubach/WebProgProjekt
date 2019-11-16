@@ -15,6 +15,9 @@ class PageTournamentDisplay {
       this.currentTournament = snapshot.val(); //Write databse snapshot in _tournaments object
     });
     document.getElementById("tournamentTitle").innerHTML = this.currentTournament.name;
+    document.getElementById("tournamentOrganizer").innerHTML = "<i>Organisator: " + this.currentTournament.organizer + "</i>";
+    document.getElementById("startdate").innerHTML = "Beginn: " + this.format(new Date(this.currentTournament.startdate));
+    document.getElementById("enddate").innerHTML = "Ende: " + this.format(new Date(this.currentTournament.enddate));
     let teams = this.currentTournament.teams;
     let teams_count = teams.length;
     let rounds = Math.log(teams_count)/Math.log(2);
@@ -54,6 +57,13 @@ class PageTournamentDisplay {
                 if(current_game % 2 == 1){
                   document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
                 }
+                database.ref('/tournaments/'
+                            + urlParams.get('key')
+                            + "/matches/"
+                            + round_number + "/"
+                            + current_game).update({
+                  winner: 1
+                });
               }
             }
             else{
@@ -71,6 +81,13 @@ class PageTournamentDisplay {
                 document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_1.innerHTML;
               }
             }
+            database.ref('/tournaments/'
+                        + urlParams.get('key')
+                        + "/matches/"
+                        + round_number + "/"
+                        + current_game).update({
+              winner: 1
+            });
           }
         }
         team_2.onclick = function(){
@@ -85,6 +102,13 @@ class PageTournamentDisplay {
                   document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_2.innerHTML;
                 }
               }
+              database.ref('/tournaments/'
+                          + urlParams.get('key')
+                          + "/matches/"
+                          + round_number + "/"
+                          + current_game).update({
+                winner: 2
+              });
             }
             else{
               alert("Das Team hat keinen Gegner.");
@@ -101,6 +125,13 @@ class PageTournamentDisplay {
                 document.querySelector(".round-" + next_round + " .game-bottom.game-" + corresponding_game).innerHTML = team_2.innerHTML;
               }
             }
+            database.ref('/tournaments/'
+                        + urlParams.get('key')
+                        + "/matches/"
+                        + round_number + "/"
+                        + current_game).update({
+              winner: 2
+            });
           }
         }
         round_html.appendChild(team_1);
@@ -119,5 +150,25 @@ class PageTournamentDisplay {
     for(let i = 0; i < document.querySelectorAll(".round-1 .game-bottom").length; i++){
       document.querySelectorAll(".round-1 .game-bottom")[i].innerHTML = teams[i*2+1];
     }
+    database.ref('/tournaments/'
+                    + urlParams.get('key')
+                    + "/matches/3").once("value").then((snapshot) => {
+                      if(snapshot.exists()){
+                        console.log("häää");
+                      }
+                      else{
+                        console.log("yeehaw");
+                      }
+                    }
+                  );
+  }
+
+  format(date) {
+    var d = date.getDate();
+    var m = date.getMonth() + 1;
+    var y = date.getFullYear();
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    return '' + (d <= 9 ? '0' + d : d) + '.' + (m<=9 ? '0' + m : m) + '.' + y + " - " + (hh<=9 ? '0' + hh : hh) + ":" + (mm<=9 ? '0' + mm : mm);
   }
 }
