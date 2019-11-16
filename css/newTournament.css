@@ -1,0 +1,7 @@
+.tournamentelements {
+    margin-bottom: 1em;
+}
+
+#teamList li button {
+    float: right;
+}
