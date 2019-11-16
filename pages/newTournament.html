@@ -1,21 +1,21 @@
 <div id="alertBox" class="alert alert-danger" role="alert"></div>
 <div class="row tournamentelements">
-    <h1>Tournament details<br></h1>
+    <h1>Turnierdetails<br></h1>
 </div>
 <div class="row tournamentelements">
     <h3>Name:<br></h3>
-    <input id="tournamentName" type="text" class="form-control" placeholder="Enter the tournament name here...">
+    <input id="tournamentName" type="text" class="form-control" placeholder="Turniername">
 </div>
 <div class="row tournamentelements">
-    <h3>Organizer:<br></h3>
-    <input id="organizerName" type="text" class="form-control" placeholder="Enter the organizers name here...">
+    <h3>Organisator:<br></h3>
+    <input id="organizerName" type="text" class="form-control" placeholder="Organisator">
 </div>
 <div class="row tournamentelements">
-    <h3>Start date:<br></h3>
+    <h3>Startdatum:<br></h3>
     <input class="form-control" id="startdatepicker" type="date">
 </div>
 <div class="row tournamentelements">
-    <h3>End date:<br></h3>
+    <h3>Enddatum:<br></h3>
     <input class="form-control" id="enddatepicker" type="date">
 </div>
 <div class="row">
@@ -28,13 +28,13 @@
     <img id="thumbnail" src="" onerror="this.style.display='none'" class="col-lg-6 col-md-12">
 </div>
 <div class="row">
-    <h3>Gamesystem:</h3>
+    <h3>Turniersystem:</h3>
 </div>
 <div class="row tournamentelements">
     <select class="form-control" name="gamesystem" id="gamesystemSelector">
-        <option value="ko">K.O. System</option>
-        <option disabled title="Coming soon!" value="gruppen">Groupsystem</option>
-        <option disabled title="Coming soon!" value="liga">League-System</option>
+        <option value="ko">K.O-System</option>
+        <option disabled title="Coming soon!" value="gruppen">Gruppensystem</option>
+        <option disabled title="Coming soon!" value="liga">Liga</option>
     </select>
 </div>
 <div class="row">
@@ -42,7 +42,7 @@
 </div>
 <div class="row tournamentelements">
     <select class="form-control" name="team" id="teamSelector">
-        <option value="selector" selected>Add team...</option>
+        <option value="selector" selected>Team hinzufügen...</option>
     </select>
 </div>
 <div class="row tournamentelements">
@@ -50,5 +50,5 @@
     </ul>
 </div>
 <div class="row tournamentelements">
-    <button id="submitTournament" type="submit" class="btn btn-success col-sm-12">Create Tournament</button>
+    <button id="submitTournament" type="submit" class="btn btn-success col-sm-12">Turnier erstellen</button>
 </div>
