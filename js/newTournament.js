@@ -1,6 +1,9 @@
 let newTournamentContext;
 
 class PageNewTournament {
+
+  imageData;
+
   constructor(app) {
     this._app = app;
     // newTournamentContext should always point to the class object which 'this' often doesnt do
@@ -162,7 +165,7 @@ class PageNewTournament {
           let ratioCheck = (width/height == 16/9);
           // only add image if ratio is correct
           if(ratioCheck) {
-            newTeamContext.imageData = e.target.result;
+            newTournamentContext<.imageData = e.target.result;
           } else {
             $("#alertBox").html("Das Seitenverhältnis des Bilds muss 16:9 betragen.");
             $("#alertBox").show();
