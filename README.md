@@ -35,7 +35,7 @@ Klickt der Nutzer auf eine Turnierkachel, gelangt er in die Anzeige des ausgewä
 Über einen Klick auf den grünen "+ Neues Turnier anlegen"-Button oben in der Turnierübersicht wird die Turniererstellungsmaske geöffnet. Oben kann der Nutzer Name, Organisator, Start- und Enddatum sowie Logo, Spielsystem und teilnehmende Teams angeben. Das Start- und Enddatum wird über ein Calendar-Pick-Modul dynamisch ausgewählt oder per Tastatureingabe festgelegt. Ähnlich wie in der Teamerstellungsmaske kann der Nutzer ein Logo hochladen. Im Dropdown-Menü des Spielsystems kann der Benutzer zwischen den verschiedenen Turniermodi auswählen (momentan wird nur das Standard-K.O.-System unterstützt). Zuletzt wählt der Nutzer aus den in der Datenbank angelegten Teams die Teilnehmer des Turniers aus. Dabei muss beachtet werden, dass das Turnier nur 2, 4, 8, 16 oder 32 teilnehmende Teams hat. Über den grünen "Turnier erstellen"-Button wird das Turnier in der Datenbank angelegt.
 
 ### Chatbot
-Auf jeder Seite wird unten rechts ein roter "Klick mich!"-Button angezeigt. Über diesen öffnet sich das Popup des Chatbots, der dem Nutzer helfen soll, sich auf der Seite zurecht zufinden. Dabei kann dieser beispielsweise gefragt werden, wie man ein neues Team erstellt. Die KI dahinter basiert auf der SAP Conversational AI.
+Auf jeder Seite wird unten rechts ein roter "Klick mich!"-Button angezeigt. Über diesen öffnet sich das Popup des Chatbots, der dem Nutzer helfen soll, sich auf der Seite zurecht zufinden. Dabei kann dieser beispielsweise gefragt werden, wie man ein neues Team erstellt. Die KI dahinter basiert auf der SAP Conversational AI. https://cai.tools.sap/nrubach/tournamentmanager
 
 ## Vorgehensweise & Aufteilung
 Das Grundgerüst der Anwedung wurde von allen 3 Teammitgliedern gemeinsam erstellt und von Nico Rubach committed. Dazu gehört auch die standard License, die sich zur Sicherheit in diesem PUBLIC Repository befindet. Die restlichen Aufgaben wurden wie folgt aufgeteilt:
@@ -54,5 +54,6 @@ Das Grundgerüst der Anwedung wurde von allen 3 Teammitgliedern gemeinsam erstel
 - Teamübersicht & Details
 - Turnierübersicht
 - Routing & Grundstruktur
+- Chatbotintegration
 
 Aufgrund dieser Aufteilung sind wir der Überzeugung, dass alle Gruppenmitglieder einen ählichen Anteil an diesem Projekt geleistet haben.
