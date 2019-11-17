@@ -165,7 +165,7 @@ class PageNewTournament {
           let ratioCheck = (width/height == 16/9);
           // only add image if ratio is correct
           if(ratioCheck) {
-            newTournamentContext<.imageData = e.target.result;
+            newTournamentContext.imageData = e.target.result;
           } else {
             $("#alertBox").html("Das Seitenverhältnis des Bilds muss 16:9 betragen.");
             $("#alertBox").show();
