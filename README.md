@@ -36,3 +36,23 @@ Klickt der Nutzer auf eine Turnierkachel, gelangt er in die Anzeige des ausgewä
 
 ### Chatbot
 Auf jeder Seite wird unten rechts ein roter "Klick mich!"-Button angezeigt. Über diesen öffnet sich das Popup des Chatbots, der dem Nutzer helfen soll, sich auf der Seite zurecht zufinden. Dabei kann dieser beispielsweise gefragt werden, wie man ein neues Team erstellt. Die KI dahinter basiert auf der SAP Conversational AI.
+
+## Vorgehensweise & Aufteilung
+Das Grundgerüst der Anwedung wurde von allen 3 Teammitgliedern gemeinsam erstellt und von Nico Rubach committed. Dazu gehört auch die standard License, die sich zur Sicherheit in diesem PUBLIC Repository befindet. Die restlichen Aufgaben wurden wie folgt aufgeteilt:
+
+#### Frederic
+- Startseite mit Neuigkeiten und VoDs
+- Detailanzeige für Turniere
+- Dokumentation und Readme
+
+#### Theodor
+- Teamerstellung
+- Turniererstellung
+- Firebase Integration & Setup
+
+#### Nico
+- Teamübersicht & Details
+- Turnierübersicht
+- Routing & Grundstruktur
+
+Aufgrund dieser Aufteilung sind wir der Überzeugung, dass alle Gruppenmitglieder einen ählichen Anteil an diesem Projekt geleistet haben.
