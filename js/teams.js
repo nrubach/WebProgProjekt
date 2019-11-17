@@ -82,7 +82,7 @@ class PageTeams {
       back.classList.add("back");
 
       //Content of back container
-      back.innerHTML = "<h3 class='text-info teamName'>" + item.name + "</h3>Average skill rating - <span class='text-warning'>" + item.avgRating + "</span><h5 class='text-info playersTitle'>Players</h5>";
+      back.innerHTML = "<h3 class='text-info teamName'>" + item.name + "</h3>Durchschnittliches skill rating - <span class='text-warning'>" + item.avgRating + "</span><h5 class='text-info playersTitle'>Spieler</h5>";
       //Generate each player from players object
       Object.keys(item.players).forEach((playerKey) => {
         let playerItem = item.players[playerKey];
