@@ -46,7 +46,7 @@ class PageNewTournament {
     });
     // Setup the image input listener
     $("#inputfile").change(function(){
-      newTeamContext.readImage(this);
+      newTournamentContext.readImage(this);
     });
   }
 
